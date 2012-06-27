@@ -53,6 +53,23 @@
     return self;
 }
 
+- (void)drawTriangleInContext:(CGContextRef)context
+{
+    UIGraphicsPushContext(context);
+    CGContextBeginPath(context);
+    
+    CGContextMoveToPoint(context, 324, 215);
+    CGContextAddLineToPoint(context, 331, 248);
+    CGContextAddLineToPoint(context, 316, 248);
+    
+    CGContextClosePath(context);
+    
+    [[UIColor blueColor] setFill];
+    [[UIColor blackColor] setStroke];
+    CGContextDrawPath(context, kCGPathFill);
+    UIGraphicsPopContext();
+}
+
 - (void)drawRectAtPoint:(CGPoint)p withWidth:(CGFloat)width andHeight:(CGFloat)height inContext:(CGContextRef)context 
 {
     UIGraphicsPushContext(context);
@@ -103,6 +120,9 @@
         [self drawRectAtPoint:labelOrigin withWidth:GREEN_LABEL_WIDTH andHeight:GREEN_LABEL_HEIGHT inContext:context];
         labelOrigin.x += LABEL_GAP;
     }
+    
+    // draw a triangle
+    [self drawTriangleInContext:context];
 }
 
 - (void)functionalAreaLabelSelected:(NSString *)label
