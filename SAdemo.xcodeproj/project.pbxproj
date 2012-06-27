@@ -11,6 +11,8 @@
 		1E5EF923159BA59800AE3F6A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF922159BA59800AE3F6A /* CoreLocation.framework */; };
 		1E5EF925159BA5AA00AE3F6A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */; };
 		1E5EF927159BA5C900AE3F6A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF926159BA5C900AE3F6A /* CFNetwork.framework */; };
+		1E5EF929159BABDA00AE3F6A /* compass 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EF928159BABDA00AE3F6A /* compass 2.png */; };
+		1E5EF92B159BAC5B00AE3F6A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EF92A159BAC5B00AE3F6A /* icon.png */; };
 		1E64DA4F159B462F00B31095 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E64DA4E159B462F00B31095 /* UIKit.framework */; };
 		1E64DA51159B462F00B31095 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E64DA50159B462F00B31095 /* Foundation.framework */; };
 		1E64DA53159B462F00B31095 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E64DA52159B462F00B31095 /* CoreGraphics.framework */; };
@@ -29,6 +31,8 @@
 		1E5EF922159BA59800AE3F6A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1E5EF926159BA5C900AE3F6A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1E5EF928159BABDA00AE3F6A /* compass 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass 2.png"; sourceTree = "<group>"; };
+		1E5EF92A159BAC5B00AE3F6A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		1E64DA4A159B462F00B31095 /* SAdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SAdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E64DA4E159B462F00B31095 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1E64DA50159B462F00B31095 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				1E64DA75159B490F00B31095 /* button.png */,
+				1E5EF92A159BAC5B00AE3F6A /* icon.png */,
+				1E5EF928159BABDA00AE3F6A /* compass 2.png */,
 				1E5EF90B159B8D2000AE3F6A /* compass.png */,
 				1E64DA56159B462F00B31095 /* SAdemo-Info.plist */,
 				1E64DA57159B462F00B31095 /* InfoPlist.strings */,
@@ -181,6 +187,8 @@
 				1E64DA62159B462F00B31095 /* MainStoryboard.storyboard in Resources */,
 				1E64DA76159B490F00B31095 /* button.png in Resources */,
 				1E5EF90C159B8D2000AE3F6A /* compass.png in Resources */,
+				1E5EF929159BABDA00AE3F6A /* compass 2.png in Resources */,
+				1E5EF92B159BAC5B00AE3F6A /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

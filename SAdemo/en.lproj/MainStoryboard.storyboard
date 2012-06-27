@@ -627,8 +627,8 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </label>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="compass.png" id="JWk-mq-lkR">
-                                        <rect key="frame" x="241" y="158" width="150" height="150"/>
+                                    <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="compass 2.png" id="JWk-mq-lkR">
+                                        <rect key="frame" x="241" y="158" width="164" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -670,7 +670,7 @@
     </scenes>
     <resources>
         <image name="button.png" width="62" height="62"/>
-        <image name="compass.png" width="192" height="192"/>
+        <image name="compass 2.png" width="266" height="237"/>
     </resources>
     <classes>
         <class className="GvaView" superclassName="UIView">
@@ -679,8 +679,6 @@
         <class className="SAViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SAViewController.h"/>
             <relationships>
-                <relationship kind="action" name="functionalAreaSelected:" candidateClass="UIButton"/>
-                <relationship kind="action" name="quitCurrentMode:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="compass" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="gvaView" candidateClass="GvaView"/>
             </relationships>
