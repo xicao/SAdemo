@@ -18,8 +18,6 @@
 		1E64DA6F159B46DF00B31095 /* GvaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E64DA6C159B46DF00B31095 /* GvaView.m */; };
 		1E64DA70159B46DF00B31095 /* SAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E64DA6E159B46DF00B31095 /* SAViewController.m */; };
 		1E64DA76159B490F00B31095 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E64DA75159B490F00B31095 /* button.png */; };
-		1E874B29159B73C400F6ACF7 /* compassNeedle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E874B28159B73C400F6ACF7 /* compassNeedle.png */; };
-		1E874B3B159B7B4C00F6ACF7 /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E874B3A159B7B4C00F6ACF7 /* compass.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +39,6 @@
 		1E64DA6D159B46DF00B31095 /* SAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAViewController.h; sourceTree = "<group>"; };
 		1E64DA6E159B46DF00B31095 /* SAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAViewController.m; sourceTree = "<group>"; };
 		1E64DA75159B490F00B31095 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
-		1E874B28159B73C400F6ACF7 /* compassNeedle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compassNeedle.png; sourceTree = "<group>"; };
-		1E874B3A159B7B4C00F6ACF7 /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +102,6 @@
 		1E64DA55159B462F00B31095 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1E874B3A159B7B4C00F6ACF7 /* compass.png */,
-				1E874B28159B73C400F6ACF7 /* compassNeedle.png */,
 				1E64DA75159B490F00B31095 /* button.png */,
 				1E64DA56159B462F00B31095 /* SAdemo-Info.plist */,
 				1E64DA57159B462F00B31095 /* InfoPlist.strings */,
@@ -171,8 +165,6 @@
 				1E64DA59159B462F00B31095 /* InfoPlist.strings in Resources */,
 				1E64DA62159B462F00B31095 /* MainStoryboard.storyboard in Resources */,
 				1E64DA76159B490F00B31095 /* button.png in Resources */,
-				1E874B29159B73C400F6ACF7 /* compassNeedle.png in Resources */,
-				1E874B3B159B7B4C00F6ACF7 /* compass.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +293,6 @@
 				1E64DA6A159B462F00B31095 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
