@@ -10,6 +10,4 @@
 
 @interface SAViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIImageView *compass;
-
 @end
