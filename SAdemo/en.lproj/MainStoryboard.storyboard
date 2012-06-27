@@ -626,6 +626,10 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="compass.png" id="Rdg-tF-HWi">
+                                        <rect key="frame" x="247" y="158" width="142" height="142"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -636,12 +640,14 @@
                     <navigationItem key="navigationItem" title="Controller" id="san-FP-efZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="cmpass" destination="Rdg-tF-HWi" id="kmV-Ck-dGu"/>
+                        <outlet property="compass" destination="Rdg-tF-HWi" id="JRX-ew-ofZ"/>
                         <outlet property="gvaView" destination="bE2-Jo-2wX" id="RoV-Yx-Vml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaL-6u-Rvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456" y="133"/>
+            <point key="canvasLocation" x="1067" y="84"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gTd-31-yeC">
@@ -664,6 +670,7 @@
     </scenes>
     <resources>
         <image name="button.png" width="62" height="62"/>
+        <image name="compass.png" width="192" height="192"/>
     </resources>
     <classes>
         <class className="GvaView" superclassName="UIView">

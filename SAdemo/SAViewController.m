@@ -15,6 +15,7 @@
 
 @implementation SAViewController
 
+
 @synthesize gvaView = _gvaView;
 
 - (void)setGvaView:(GvaView *)gvaView 
@@ -53,5 +54,6 @@
     
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
 
 @end
