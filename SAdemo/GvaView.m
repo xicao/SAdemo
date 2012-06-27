@@ -11,7 +11,7 @@
 @implementation GvaView
 
 //---------------------------------------
-#define CALIBRATION         15
+#define CALIBRATION         10
 
 #define WHITE_ZONE_WIDTH    744
 #define WHITE_ZONE_HEIGHT   493
