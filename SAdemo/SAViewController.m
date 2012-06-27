@@ -35,6 +35,12 @@
     [self.gvaView functionalAreaLabelSelected:sender.currentTitle];
 }
 
+//back to mode select view
+- (IBAction)quitCurrentMode:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 //hide navigation bar
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
