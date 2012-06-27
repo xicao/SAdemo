@@ -627,6 +627,10 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </label>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="compass.png" id="JWk-mq-lkR">
+                                        <rect key="frame" x="241" y="158" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -637,12 +641,13 @@
                     <navigationItem key="navigationItem" title="Controller" id="san-FP-efZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="compass" destination="JWk-mq-lkR" id="DPe-jt-hTN"/>
                         <outlet property="gvaView" destination="bE2-Jo-2wX" id="RoV-Yx-Vml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaL-6u-Rvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456" y="133"/>
+            <point key="canvasLocation" x="1292" y="90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gTd-31-yeC">
@@ -665,6 +670,7 @@
     </scenes>
     <resources>
         <image name="button.png" width="62" height="62"/>
+        <image name="compass.png" width="192" height="192"/>
     </resources>
     <classes>
         <class className="GvaView" superclassName="UIView">
@@ -675,6 +681,7 @@
             <relationships>
                 <relationship kind="action" name="functionalAreaSelected:" candidateClass="UIButton"/>
                 <relationship kind="action" name="quitCurrentMode:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="compass" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="gvaView" candidateClass="GvaView"/>
             </relationships>
         </class>
