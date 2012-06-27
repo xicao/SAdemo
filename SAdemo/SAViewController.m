@@ -5,7 +5,7 @@
 //  Created by Xi Cao on 26/06/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-
+#import <CoreLocation/CoreLocation.h>
 #import "SAViewController.h"
 #import "GvaView.h"
 
@@ -15,6 +15,7 @@
 
 @implementation SAViewController
 
+@synthesize compass = _compass;
 @synthesize gvaView = _gvaView;
 
 - (void)setGvaView:(GvaView *)gvaView 
@@ -54,4 +55,16 @@
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)viewDidUnload {
+    
+    [self setCompass:self.compass];
+    [super viewDidUnload];
+}
+
+-(void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    double degrees = newHeading.magneticHeading;
+    double radians = degrees * M_PI / 180;
+    self.compass.transform = CGAffineTransformMakeRotation(-radians);
+}
 @end

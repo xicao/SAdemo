@@ -55,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-91" y="90"/>
+            <point key="canvasLocation" x="75" y="36"/>
         </scene>
         <!--View Controller - Controller-->
         <scene sceneID="FCw-4c-pA8">
@@ -626,6 +626,10 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="compass.png" id="fYr-QM-YK7">
+                                        <rect key="frame" x="247" y="158" width="145" height="145"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -636,13 +640,13 @@
                     <navigationItem key="navigationItem" title="Controller" id="san-FP-efZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="compass" destination="Tje-10-5QR" id="XK4-X1-rKL"/>
+                        <outlet property="compass" destination="fYr-QM-YK7" id="Fbc-dc-PgA"/>
                         <outlet property="gvaView" destination="bE2-Jo-2wX" id="RoV-Yx-Vml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaL-6u-Rvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1196" y="69"/>
+            <point key="canvasLocation" x="1251" y="36"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gTd-31-yeC">
@@ -665,6 +669,7 @@
     </scenes>
     <resources>
         <image name="button.png" width="62" height="62"/>
+        <image name="compass.png" width="192" height="192"/>
     </resources>
     <classes>
         <class className="GvaView" superclassName="UIView">
