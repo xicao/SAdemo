@@ -41,8 +41,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-//hide navigation bar
+//hide navigation bar---------------------------
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
     
@@ -54,6 +53,7 @@
     
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+//hide navigation bar---------------------------
 
 - (void)viewDidUnload {
     compass = nil;
@@ -62,21 +62,23 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-	locationManager=[[CLLocationManager alloc] init];
+	locationManager = [[CLLocationManager alloc] init];
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	locationManager.headingFilter = 1;
-	locationManager.delegate=self;
+	locationManager.delegate = self;
 	[locationManager startUpdatingHeading];
 }
 
+//referene:
+//http://blog.objectgraph.com/index.php/2012/01/10/how-to-create-a-compass-in-iphone/
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
 	// Convert Degree to Radian and move the needle
-	float oldRad =  -manager.heading.trueHeading * M_PI / 180.0f;
-	float newRad =  -newHeading.trueHeading * M_PI / 180.0f;
-	CABasicAnimation *theAnimation;
-    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+	float oldRad = -manager.heading.trueHeading * M_PI / 180.0f;
+	float newRad = -newHeading.trueHeading * M_PI / 180.0f;
+	CABasicAnimation * theAnimation;
+    theAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     theAnimation.fromValue = [NSNumber numberWithFloat:oldRad];
-    theAnimation.toValue=[NSNumber numberWithFloat:newRad];
+    theAnimation.toValue = [NSNumber numberWithFloat:newRad];
     theAnimation.duration = 0.5f;
     [compass.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
     compass.transform = CGAffineTransformMakeRotation(newRad);
