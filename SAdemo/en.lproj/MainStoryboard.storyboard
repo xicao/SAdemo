@@ -640,12 +640,13 @@
                     <navigationItem key="navigationItem" title="Controller" id="san-FP-efZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="compass" destination="Tje-10-5QR" id="XK4-X1-rKL"/>
                         <outlet property="gvaView" destination="bE2-Jo-2wX" id="RoV-Yx-Vml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaL-6u-Rvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456" y="133"/>
+            <point key="canvasLocation" x="1196" y="69"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gTd-31-yeC">
@@ -679,6 +680,7 @@
             <relationships>
                 <relationship kind="action" name="functionalAreaSelected:" candidateClass="UIButton"/>
                 <relationship kind="action" name="quitCurrentMode:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="compass" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="gvaView" candidateClass="GvaView"/>
             </relationships>
         </class>
