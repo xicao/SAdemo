@@ -16,7 +16,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];// hide status bar
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES];// hide status bar
     return UIInterfaceOrientationIsLandscape(orientation);// only support landscape
 }
 

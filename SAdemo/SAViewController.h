@@ -17,5 +17,7 @@
     __weak IBOutlet UIImageView *compass;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *informationBar;
 @property (nonatomic,retain) CLLocationManager *locationManager;
+@property NSInteger id;//0 == controller, 1 == crewpoint
 @end

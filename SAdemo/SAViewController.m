@@ -15,7 +15,9 @@
 
 @implementation SAViewController
 
+@synthesize id = _id;
 @synthesize gvaView = _gvaView;
+@synthesize informationBar = _informationBar;
 @synthesize locationManager;
 
 - (void)setGvaView:(GvaView *)gvaView
@@ -27,18 +29,25 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];// hide status bar
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES];// hide status bar
     return UIInterfaceOrientationIsLandscape(orientation);// only support landscape
 }
 
-- (IBAction)functionalAreaSelected:(UIButton *)sender {
+- (IBAction)functionalAreaSelectionButtonsPressed:(UIButton *)sender {
     // highlight current functional area label
     [self.gvaView functionalAreaLabelSelected:sender.currentTitle];
 }
 
-//back to mode select view
-- (IBAction)quitCurrentMode:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (IBAction)reconfigurableButtonsPressed:(UIButton *)sender {
+    if ([sender.currentTitle isEqualToString:@"F1"]) {
+        self.informationBar.text = [self.informationBar.text stringByReplacingOccurrencesOfString:self.informationBar.text withString:@"Start searching..."];
+    }
+}
+
+- (IBAction)commonTaskButtonsPressed:(UIButton *)sender {
+    if ([sender.currentTitle isEqualToString:@"F20"]) {//back to mode select view
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 //hide navigation bar---------------------------
@@ -57,6 +66,7 @@
 
 - (void)viewDidUnload {
     compass = nil;
+    [self setInformationBar:nil];
     [super viewDidUnload];
 }
 

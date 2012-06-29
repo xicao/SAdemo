@@ -86,7 +86,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="hzP-Zz-sDh"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="Y2U-ir-PVv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="94F-v5-5Yn">
@@ -102,7 +102,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="kaD-tq-miv"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="cPa-Qa-cEw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="obw-Ev-aJj">
@@ -118,7 +118,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="qLJ-xd-nMq"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="VQJ-YG-8iU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6QN-6j-t1Y">
@@ -134,7 +134,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="nCE-I1-MBg"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="pBB-a1-SSs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ubr-Ot-6eT">
@@ -150,7 +150,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="HjU-lh-AWi"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="ZCe-ry-yJj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IuK-Zk-dC6">
@@ -166,7 +166,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="iHv-eL-GDE"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="7aC-Bf-I2m"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xBB-hx-sfS">
@@ -182,7 +182,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="VSg-uD-RoH"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="Adz-WE-kh9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EXs-lp-6t5">
@@ -197,7 +197,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="6Ak-I2-Vvs"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="odp-CZ-Kff"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WNa-4j-YB2">
@@ -212,6 +212,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="fxf-EN-D6u"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SGJ-WG-6Zo">
                                         <rect key="frame" x="60" y="243" width="62" height="62"/>
@@ -408,7 +411,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="quitCurrentMode:" destination="B9O-hE-1ap" eventType="touchUpInside" id="fVx-dD-5Ui"/>
+                                            <action selector="commonTaskButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="7Bb-tf-MZr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QGM-bx-Dvd">
@@ -634,6 +637,13 @@
                                         <rect key="frame" x="241" y="161" width="164" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Label" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="dxV-uP-qJt">
+                                        <rect key="frame" x="146" y="110" width="733" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -646,6 +656,7 @@
                     <connections>
                         <outlet property="compass" destination="JWk-mq-lkR" id="DPe-jt-hTN"/>
                         <outlet property="gvaView" destination="bE2-Jo-2wX" id="RoV-Yx-Vml"/>
+                        <outlet property="informationBar" destination="dxV-uP-qJt" id="aFJ-xb-fzD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaL-6u-Rvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -677,8 +688,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="Kbf-Wc-xL5"/>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="q3d-Cp-NHP"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="PSj-m3-CFQ"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="Yac-C0-aCr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rvp-D8-XlR">
@@ -694,8 +705,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="XGW-w4-tGO"/>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="nZq-tN-2ZZ"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="P5S-bM-eJP"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="eTm-e3-atW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a4m-Q1-zOV">
@@ -711,8 +722,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="JIn-8W-a9P"/>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="fIh-Bk-Gzx"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="Tmj-T9-6jG"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="dE4-An-PUS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9pb-gS-Ppj">
@@ -728,8 +739,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="H0I-1D-5WS"/>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="iJo-gf-HXc"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="JuR-Iz-oxQ"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="oWY-gP-dRG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NXD-gu-fbL">
@@ -745,10 +756,17 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="2iA-91-wC9"/>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="fVX-8L-CU9"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="T6e-sc-J2F"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="n0H-Yo-JKa"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Label" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Z7E-GW-o8w">
+                                        <rect key="frame" x="146" y="111" width="733" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iOQ-Df-Rc0">
                                         <rect key="frame" x="525" y="20" width="62" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -762,8 +780,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="nrC-VX-eiG"/>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="zZI-wf-EX7"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="7aS-3L-4te"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="V1h-Ru-6WX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nHv-Zc-Q4C">
@@ -779,8 +797,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="af6-y2-yEM"/>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="bzr-8T-w1o"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="74e-CJ-XJR"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="pYQ-0B-C7n"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Qb-om-fhh">
@@ -795,8 +813,8 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="functionalAreaSelected:" destination="B9O-hE-1ap" eventType="touchUpInside" id="ccT-1D-4xg"/>
-                                            <action selector="functionalAreaSelected:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="gQu-Kx-OlC"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="hWX-fg-0xY"/>
+                                            <action selector="functionalAreaSelectionButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="pkT-wU-YnS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a6Z-HY-j5T">
@@ -811,6 +829,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="PJ2-eT-J7k"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YGh-N1-4tC">
                                         <rect key="frame" x="60" y="243" width="62" height="62"/>
@@ -1007,7 +1028,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="quitCurrentMode:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="epD-i0-DQs"/>
+                                            <action selector="commonTaskButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="3cZ-tR-bCM"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cVK-yG-fFW">
@@ -1244,6 +1265,7 @@
                     <connections>
                         <outlet property="compass" destination="ZUM-xX-coz" id="xjO-KM-XLk"/>
                         <outlet property="gvaView" destination="Jh6-rf-ESl" id="SLy-en-a1p"/>
+                        <outlet property="informationBar" destination="Z7E-GW-o8w" id="9hl-7k-Jgu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcO-7K-PUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1280,10 +1302,12 @@
         <class className="SAViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SAViewController.h"/>
             <relationships>
-                <relationship kind="action" name="functionalAreaSelected:" candidateClass="UIButton"/>
-                <relationship kind="action" name="quitCurrentMode:" candidateClass="UIButton"/>
+                <relationship kind="action" name="commonTaskButtonsPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="functionalAreaSelectionButtonsPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="reconfigurableButtonsPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="compass" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="gvaView" candidateClass="GvaView"/>
+                <relationship kind="outlet" name="informationBar" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="SAdemoViewController" superclassName="UIViewController">
