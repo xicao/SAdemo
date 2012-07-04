@@ -19,5 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *informationBar;
 @property (nonatomic,retain) CLLocationManager *locationManager;
-@property NSInteger id;//0 == controller, 1 == crewpoint
+@property (nonatomic) NSInteger id;//0 == controller, 1 == crewpoint
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+
 @end

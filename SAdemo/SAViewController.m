@@ -14,6 +14,8 @@
 @end
 
 @implementation SAViewController
+@synthesize indicator = _indicator;
+@synthesize progressView = _progressView;
 
 @synthesize id = _id;
 @synthesize gvaView = _gvaView;
@@ -67,6 +69,8 @@
 - (void)viewDidUnload {
     compass = nil;
     [self setInformationBar:nil];
+    [self setIndicator:nil];
+    [self setProgressView:nil];
     [super viewDidUnload];
 }
 
@@ -77,6 +81,10 @@
 	locationManager.headingFilter = 1;
 	locationManager.delegate = self;
 	[locationManager startUpdatingHeading];
+    
+    self.informationBar.text = @"";
+    self.indicator.hidesWhenStopped = YES;
+    self.progressView.hidden = YES;
 }
 
 //referene:

@@ -466,7 +466,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="LPc-xh-gsN">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="SEARCH" textAlignment="center" autoshrinkMode="minimumFontSize" id="LPc-xh-gsN">
                                         <rect key="frame" x="146" y="173" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -474,7 +474,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="WFN-hb-7dC">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="SEND" textAlignment="center" autoshrinkMode="minimumFontSize" id="WFN-hb-7dC">
                                         <rect key="frame" x="146" y="243" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -644,6 +644,14 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="1Yx-KD-uIN">
+                                        <rect key="frame" x="494" y="116" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="5GT-1U-mUZ">
+                                        <rect key="frame" x="729" y="130" width="150" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -656,7 +664,9 @@
                     <connections>
                         <outlet property="compass" destination="JWk-mq-lkR" id="DPe-jt-hTN"/>
                         <outlet property="gvaView" destination="bE2-Jo-2wX" id="RoV-Yx-Vml"/>
+                        <outlet property="indicator" destination="1Yx-KD-uIN" id="bJy-Pc-FtG"/>
                         <outlet property="informationBar" destination="dxV-uP-qJt" id="aFJ-xb-fzD"/>
+                        <outlet property="progressView" destination="5GT-1U-mUZ" id="4mu-UO-etP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaL-6u-Rvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1083,7 +1093,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="ygp-Da-SA3">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="SEARCH" textAlignment="center" autoshrinkMode="minimumFontSize" id="ygp-Da-SA3">
                                         <rect key="frame" x="146" y="172" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -1091,7 +1101,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="Zgr-zl-a8b">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="SEND" textAlignment="center" autoshrinkMode="minimumFontSize" id="Zgr-zl-a8b">
                                         <rect key="frame" x="146" y="242" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -1254,6 +1264,14 @@
                                         <rect key="frame" x="241" y="168" width="164" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="8d6-Uk-Ulx">
+                                        <rect key="frame" x="494" y="117" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="hJR-Qg-8hJ">
+                                        <rect key="frame" x="729" y="131" width="150" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1265,7 +1283,9 @@
                     <connections>
                         <outlet property="compass" destination="ZUM-xX-coz" id="xjO-KM-XLk"/>
                         <outlet property="gvaView" destination="Jh6-rf-ESl" id="SLy-en-a1p"/>
+                        <outlet property="indicator" destination="8d6-Uk-Ulx" id="HKK-5p-M18"/>
                         <outlet property="informationBar" destination="Z7E-GW-o8w" id="9hl-7k-Jgu"/>
+                        <outlet property="progressView" destination="hJR-Qg-8hJ" id="X95-re-8jQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcO-7K-PUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1307,7 +1327,9 @@
                 <relationship kind="action" name="reconfigurableButtonsPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="compass" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="gvaView" candidateClass="GvaView"/>
+                <relationship kind="outlet" name="indicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="informationBar" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
             </relationships>
         </class>
         <class className="SAdemoViewController" superclassName="UIViewController">

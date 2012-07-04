@@ -39,6 +39,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>peer-peer</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
