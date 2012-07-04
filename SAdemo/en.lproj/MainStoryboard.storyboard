@@ -666,6 +666,7 @@
                         <outlet property="gvaView" destination="bE2-Jo-2wX" id="RoV-Yx-Vml"/>
                         <outlet property="indicator" destination="1Yx-KD-uIN" id="bJy-Pc-FtG"/>
                         <outlet property="informationBar" destination="dxV-uP-qJt" id="aFJ-xb-fzD"/>
+                        <outlet property="mode" destination="q3A-1h-DVd" id="eK4-6T-vbD"/>
                         <outlet property="progressView" destination="5GT-1U-mUZ" id="4mu-UO-etP"/>
                     </connections>
                 </viewController>
@@ -1285,6 +1286,7 @@
                         <outlet property="gvaView" destination="Jh6-rf-ESl" id="SLy-en-a1p"/>
                         <outlet property="indicator" destination="8d6-Uk-Ulx" id="HKK-5p-M18"/>
                         <outlet property="informationBar" destination="Z7E-GW-o8w" id="9hl-7k-Jgu"/>
+                        <outlet property="mode" destination="fa2-z2-xqs" id="qiK-jw-pec"/>
                         <outlet property="progressView" destination="hJR-Qg-8hJ" id="X95-re-8jQ"/>
                     </connections>
                 </viewController>
@@ -1329,6 +1331,7 @@
                 <relationship kind="outlet" name="gvaView" candidateClass="GvaView"/>
                 <relationship kind="outlet" name="indicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="informationBar" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mode" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
             </relationships>
         </class>

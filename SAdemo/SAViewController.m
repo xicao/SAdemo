@@ -16,8 +16,8 @@
 @implementation SAViewController
 @synthesize indicator = _indicator;
 @synthesize progressView = _progressView;
+@synthesize mode = _mode;
 
-@synthesize id = _id;
 @synthesize gvaView = _gvaView;
 @synthesize informationBar = _informationBar;
 @synthesize locationManager;
@@ -71,6 +71,7 @@
     [self setInformationBar:nil];
     [self setIndicator:nil];
     [self setProgressView:nil];
+    [self setMode:nil];
     [super viewDidUnload];
 }
 
