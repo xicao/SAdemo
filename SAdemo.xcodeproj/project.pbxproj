@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2276A715A4AA760033C6BA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2276A615A4AA760033C6BA /* GameKit.framework */; };
 		1E5EF90C159B8D2000AE3F6A /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EF90B159B8D2000AE3F6A /* compass.png */; };
 		1E5EF923159BA59800AE3F6A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF922159BA59800AE3F6A /* CoreLocation.framework */; };
 		1E5EF925159BA5AA00AE3F6A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E2276A615A4AA760033C6BA /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		1E5EF90B159B8D2000AE3F6A /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		1E5EF922159BA59800AE3F6A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2276A715A4AA760033C6BA /* GameKit.framework in Frameworks */,
 				1E5EF927159BA5C900AE3F6A /* CFNetwork.framework in Frameworks */,
 				1E5EF925159BA5AA00AE3F6A /* QuartzCore.framework in Frameworks */,
 				1E5EF923159BA59800AE3F6A /* CoreLocation.framework in Frameworks */,
@@ -90,6 +93,7 @@
 		1E64DA4D159B462F00B31095 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E2276A615A4AA760033C6BA /* GameKit.framework */,
 				1E5EF926159BA5C900AE3F6A /* CFNetwork.framework */,
 				1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */,
 				1E5EF922159BA59800AE3F6A /* CoreLocation.framework */,

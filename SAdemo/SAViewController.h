@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
+#import <GameKit/GameKit.h>
 
-@interface SAViewController : UIViewController<CLLocationManagerDelegate>
+@interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate>
 {
     CLLocationManager *locationManager;
     
