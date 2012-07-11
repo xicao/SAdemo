@@ -42,7 +42,7 @@
 
 - (IBAction)reconfigurableButtonsPressed:(UIButton *)sender {
     if ([sender.currentTitle isEqualToString:@"F1"]) {
-        self.informationBar.text = [self.informationBar.text stringByReplacingOccurrencesOfString:self.informationBar.text withString:@"Start searching..."];
+        self.informationBar.text = [self.informationBar.text stringByAppendingString:@"Start searching..."];
     }
 }
 
