@@ -10,8 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <GameKit/GameKit.h>
+#import <Foundation/Foundation.h>
 
-@interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate>
+@interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate,GKPeerPickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
 {
     CLLocationManager *locationManager;
     
@@ -23,5 +24,13 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *mode;
+
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *sendTextButton;
+
+@property (nonatomic, retain) GKSession* session;
+@property (nonatomic, retain) NSString* peerID;
+
 
 @end
