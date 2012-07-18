@@ -11,6 +11,8 @@
 
 @interface SAViewController ()
 @property (nonatomic, weak) IBOutlet GvaView *gvaView;
+@property BOOL readyToSendText;
+@property BOOL readyToSendImage;
 @end
 
 @implementation SAViewController
@@ -22,14 +24,16 @@
 @synthesize mode = _mode;
 @synthesize textField = _textField;
 @synthesize textView = _textView;
+@synthesize imageView = _imageView;
 @synthesize sendTextButton = _sendTextButton;
+@synthesize sendImageButton = _sendImageButton;
+@synthesize saveImageButton = _saveImageButton;
 
 @synthesize gvaView = _gvaView;
 @synthesize informationBar = _informationBar;
 @synthesize locationManager;
 @synthesize session = _session;
 @synthesize peerID = _peerID;
-
 
 # pragma mark - simple alert utility
 
@@ -126,51 +130,6 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 
 #pragma mark - send and receive methods
 
-- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context
-{
-	if ([data length] < 1024) {
-		// text
-		NSLog(@"received text");
-		NSString* msg = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", msg];
-		self.textView.text = text;
-		NSRange range = NSMakeRange([text length]-1, 1);
-		[self.textView scrollRangeToVisible:range];
-		
-	} else {
-		// image
-		NSLog(@"received image");
-		//self.imageView.image = [UIImage imageWithData:data];
-	}
-}
-
-
-#pragma mark - view methods
-
-- (void)setGvaView:(GvaView *)gvaView
-{
-    _gvaView = gvaView;
-    [self.gvaView setNeedsDisplay];
-    [self.gvaView setNeedsLayout];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-    //[[UIApplication sharedApplication] setStatusBarHidden:YES];// hide status bar
-    return UIInterfaceOrientationIsLandscape(orientation);// only support landscape
-}
-
-#pragma mark - helper methods
-
-- (void)clearInformationBarText {
-    self.informationBar.text = @"";
-}
-
-- (void)setInformationBarText:(NSString *)info {
-    [self clearInformationBarText];
-    self.informationBar.text = [self.informationBar.text stringByAppendingString:info];
-}
-
 - (IBAction)sendText:(UIButton *)sender {
     
     if (self.session == nil) {
@@ -191,6 +150,81 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	self.textField.text = @"";//clear text field
 }
 
+- (IBAction)sengImage:(id)sender {
+	
+	UIActionSheet* sheet = [[UIActionSheet alloc]
+							 initWithTitle:nil
+							 delegate:self
+							 cancelButtonTitle:@"cancel"
+							 destructiveButtonTitle:nil
+							 otherButtonTitles:@"choose", nil];
+    
+	[sheet showInView:self.view];
+}
+
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
+	if ([data length] < 1024) {// receice text
+        NSLog(@"text received");
+		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+		self.textView.text = text;
+
+		[self.textView scrollRangeToVisible:NSMakeRange([text length]-1, 1)];
+	} else {// receive image
+		NSLog(@"image received");
+		self.imageView.image = [UIImage imageWithData:data];
+	}
+}
+
+#pragma mark - image picker methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissModalViewControllerAnimated:YES];
+	UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
+	
+	NSError* error = nil;
+
+	[self.session sendData:UIImageJPEGRepresentation(image, 0.5)
+				   toPeers:[NSArray arrayWithObject:self.peerID]
+			  withDataMode:GKSendDataReliable
+					 error:&error];
+    
+	if (error) {
+		NSLog(@"%@", error);
+	}
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - action sheet methods
+
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 1) {// cancle
+		return;
+	}
+	
+	UIImagePickerController* picker = [[UIImagePickerController alloc] init];
+	picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	
+	picker.delegate = self;
+	picker.allowsEditing = YES;
+	picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+	[self presentModalViewController:picker animated:YES];
+}
+
+
+#pragma mark - helper methods
+
+- (void)clearInformationBarText {
+    self.informationBar.text = @"";
+}
+
+- (void)setInformationBarText:(NSString *)info {
+    [self clearInformationBarText];
+    self.informationBar.text = [self.informationBar.text stringByAppendingString:info];
+}
 
 #pragma mark - functional area selection buttons methods
 
@@ -210,6 +244,36 @@ void myShowAlert(int line, char *functname, id formatstring,...)
         picker.connectionTypesMask = GKPeerPickerConnectionTypeOnline | GKPeerPickerConnectionTypeNearby;
         
         [picker show];
+    } else if ([sender.currentTitle isEqualToString:@"F2"]) {// send message
+        if (!self.readyToSendText) {
+            self.readyToSendText = YES;
+            
+            self.textView.hidden = NO;
+            self.textField.hidden = NO;
+            self.sendTextButton.hidden = NO;
+        } else {
+            self.readyToSendText = NO;
+            
+            self.textView.hidden = YES;
+            self.textField.hidden = YES;
+            self.sendTextButton.hidden = YES;
+        }
+        
+    } else if ([sender.currentTitle isEqualToString:@"F3"]) {// send image
+        if (!self.readyToSendImage) {
+            self.readyToSendImage = YES;
+            
+            self.imageView.hidden = NO;
+            self.sendImageButton.hidden = NO;
+            self.saveImageButton.hidden = NO;
+        } else {
+            self.readyToSendImage = NO;
+            
+            self.imageView.hidden = YES;
+            self.sendImageButton.hidden = YES;
+            self.saveImageButton.hidden = YES;
+        }
+        
     }
 }
 
@@ -221,7 +285,20 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     }
 }
 
-#pragma mark - view
+#pragma mark - view methods
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES];// hide status bar
+    return UIInterfaceOrientationIsLandscape(orientation);// only support landscape
+}
+
+- (void)setGvaView:(GvaView *)gvaView
+{
+    _gvaView = gvaView;
+    [self.gvaView setNeedsDisplay];
+    [self.gvaView setNeedsLayout];
+}
 
 - (void)viewDidUnload {
     compass = nil;
@@ -232,6 +309,9 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     [self setTextField:nil];
     [self setSendTextButton:nil];
     [self setTextView:nil];
+    [self setImageView:nil];
+    [self setSendImageButton:nil];
+    [self setSaveImageButton:nil];
     [super viewDidUnload];
 }
 
@@ -246,8 +326,15 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     self.informationBar.text = @"";
     self.indicator.hidesWhenStopped = YES;
     self.progressView.hidden = YES;
+    
+    self.textView.hidden = YES;
     self.textField.hidden = YES;
     self.sendTextButton.hidden = YES;
+    
+    self.imageView.hidden = YES;
+    self.sendImageButton.hidden = YES;
+    self.saveImageButton.hidden = YES;
+    
 }
 
 #pragma mark - hide navigation bar

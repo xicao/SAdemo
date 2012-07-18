@@ -12,7 +12,7 @@
 #import <GameKit/GameKit.h>
 #import <Foundation/Foundation.h>
 
-@interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate,GKPeerPickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
+@interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate,GKPeerPickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     CLLocationManager *locationManager;
     
@@ -27,7 +27,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *sendTextButton;
+@property (weak, nonatomic) IBOutlet UIButton *sendImageButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveImageButton;
 
 @property (nonatomic, retain) GKSession* session;
 @property (nonatomic, retain) NSString* peerID;
