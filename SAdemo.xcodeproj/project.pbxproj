@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1E2276A715A4AA760033C6BA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2276A615A4AA760033C6BA /* GameKit.framework */; };
-		1E48386615AD92740076C937 /* SessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E48386515AD92740076C937 /* SessionHelper.m */; };
 		1E5EF90C159B8D2000AE3F6A /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EF90B159B8D2000AE3F6A /* compass.png */; };
 		1E5EF923159BA59800AE3F6A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF922159BA59800AE3F6A /* CoreLocation.framework */; };
 		1E5EF925159BA5AA00AE3F6A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */; };
@@ -30,8 +29,6 @@
 
 /* Begin PBXFileReference section */
 		1E2276A615A4AA760033C6BA /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		1E48386415AD92740076C937 /* SessionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHelper.h; sourceTree = "<group>"; };
-		1E48386515AD92740076C937 /* SessionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHelper.m; sourceTree = "<group>"; };
 		1E5EF90B159B8D2000AE3F6A /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		1E5EF922159BA59800AE3F6A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -113,8 +110,6 @@
 				1E64DA5D159B462F00B31095 /* SAdemoAppDelegate.h */,
 				1E64DA5E159B462F00B31095 /* SAdemoAppDelegate.m */,
 				1E64DA60159B462F00B31095 /* MainStoryboard.storyboard */,
-				1E48386415AD92740076C937 /* SessionHelper.h */,
-				1E48386515AD92740076C937 /* SessionHelper.m */,
 				1E64DA6B159B46DF00B31095 /* GvaView.h */,
 				1E64DA6C159B46DF00B31095 /* GvaView.m */,
 				1E64DA6D159B46DF00B31095 /* SAViewController.h */,
@@ -213,7 +208,6 @@
 				1E64DA65159B462F00B31095 /* SAdemoViewController.m in Sources */,
 				1E64DA6F159B46DF00B31095 /* GvaView.m in Sources */,
 				1E64DA70159B46DF00B31095 /* SAViewController.m in Sources */,
-				1E48386615AD92740076C937 /* SessionHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
