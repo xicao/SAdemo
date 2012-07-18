@@ -244,6 +244,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="NSW-5t-ksf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pSV-hq-nQG">
                                         <rect key="frame" x="60" y="453" width="62" height="62"/>
@@ -504,7 +507,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="1ia-6Z-wwY">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="CAMERA" textAlignment="center" autoshrinkMode="minimumFontSize" id="1ia-6Z-wwY">
                                         <rect key="frame" x="146" y="383" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -688,7 +691,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="26F-bk-U7l">
-                                        <rect key="frame" x="525" y="472" width="247" height="62"/>
+                                        <rect key="frame" x="525" y="334" width="247" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="cb5-BT-wsA">
@@ -947,6 +950,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="nLt-EY-lKq"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Qz-0G-vLH">
                                         <rect key="frame" x="60" y="453" width="62" height="62"/>
@@ -1207,7 +1213,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="xUo-zH-7GV">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="CAMERA" textAlignment="center" autoshrinkMode="minimumFontSize" id="xUo-zH-7GV">
                                         <rect key="frame" x="146" y="382" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -1380,11 +1386,11 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="sendText:" destination="B9O-hE-1ap" eventType="touchUpInside" id="TQr-Zi-B7P"/>
+                                            <action selector="sendText:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="yjR-na-isf"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="pKh-5T-ZfA">
-                                        <rect key="frame" x="527" y="476" width="247" height="62"/>
+                                        <rect key="frame" x="527" y="338" width="247" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="9TT-HM-AqQ">
@@ -1399,7 +1405,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="sendImage:" destination="B9O-hE-1ap" eventType="touchUpInside" id="Huc-9p-gzX"/>
+                                            <action selector="sendImage:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="oKL-Of-JYX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" hasAttributedTitle="NO" lineBreakMode="middleTruncation" id="Bf5-R3-aSp">
@@ -1414,7 +1420,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="saveImage:" destination="B9O-hE-1ap" eventType="touchUpInside" id="wIH-a4-k2q"/>
+                                            <action selector="saveImage:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="cOo-1d-dlK"/>
                                         </connections>
                                     </button>
                                 </subviews>

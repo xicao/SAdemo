@@ -8,11 +8,15 @@
 
 #import "SAViewController.h"
 #import "GvaView.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface SAViewController ()
 @property (nonatomic, weak) IBOutlet GvaView *gvaView;
 @property BOOL readyToSendText;
 @property BOOL readyToSendImage;
+
+@property (nonatomic, strong) UIPopoverController *imagePopover;
+@property (weak, nonatomic) UIActionSheet *actionSheet;
 @end
 
 @implementation SAViewController
@@ -34,6 +38,9 @@
 @synthesize locationManager;
 @synthesize session = _session;
 @synthesize peerID = _peerID;
+
+@synthesize imagePopover = _imagePopover;
+@synthesize actionSheet = _actionSheet;
 
 # pragma mark - simple alert utility
 
@@ -86,6 +93,7 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 - (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
 	// from Apple - Game Kit Programmiing Guide: Finding Peers with Peer Picker;
 	picker.delegate = nil;
+    [self clearInformationBarText];
 }
 
 #pragma mark - session methods
@@ -130,6 +138,19 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 
 #pragma mark - send and receive methods
 
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
+	if ([data length] < 1024) {// receive text
+        NSLog(@"text received");
+		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+		self.textView.text = text;
+        
+		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
+	} else {// receive image
+		NSLog(@"image received");
+		self.imageView.image = [UIImage imageWithData:data];
+	}
+}
+
 - (IBAction)sendText:(UIButton *)sender {
     if (self.session == nil) {
 		showAlert(@"You are not connecting to any devices.");
@@ -150,18 +171,39 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 - (IBAction)sendImage:(id)sender {
+    /*
     if (self.session == nil) {
 		showAlert(@"You are not connecting to any devices.");
 		return;
 	}
+    */
 	
-	UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                       delegate:self
-                                              cancelButtonTitle:@"cancel"
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:@"choose", nil];
+//    if (self.actionSheet) {
+//        // do nothing
+//    } else {
+//        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"cancel"
+//                                         destructiveButtonTitle:nil
+//                                              otherButtonTitles:@"choose", nil];
+//        
+//        [sheet showFromRect:CGRectMake(0, 0, 1165, 573) inView:self.gvaView animated:YES];
+//        self.actionSheet = sheet;
+//        
+//        
+//    }
     
-	[sheet showInView:self.view];
+    NSError* error = nil;
+	NSData* data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
+	[self.session sendData:data
+				   toPeers:[NSArray arrayWithObject:self.peerID]
+			  withDataMode:GKSendDataReliable
+					 error:&error];
+	if (error) {
+		showAlert(@"%@", error);
+	} else {
+        self.imageView.image = nil;
+    }
 }
 
 - (IBAction)saveImage:(UIButton *)sender {
@@ -170,59 +212,60 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 		return;
 	}
     
-    //to be add code
+    UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, @selector(imageSaved:didFinishSavingWithError:contextInfo:), nil);
 }
 
-- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-	if ([data length] < 1024) {// receive text
-        NSLog(@"text received");
-		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-		self.textView.text = text;
-
-		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
-	} else {// receive image
-		NSLog(@"image received");
-		self.imageView.image = [UIImage imageWithData:data];
-	}
-}
-
-#pragma mark - image picker methods
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissModalViewControllerAnimated:YES];
-	UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
-	
-	NSError* error = nil;
-	[self.session sendData:UIImageJPEGRepresentation(image, 0.5)
-				   toPeers:[NSArray arrayWithObject:self.peerID]
-			  withDataMode:GKSendDataReliable
-					 error:&error];
-    
-	if (error) {
-		showAlert(@"%@", error);
-	}
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissModalViewControllerAnimated:YES];
+-(void)imageSaved:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+	showAlert(@"Image saved.");
 }
 
 #pragma mark - action sheet methods
 
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
 	if (buttonIndex == 1) {// cancel
 		return;
-	}
-	
-	UIImagePickerController* picker = [[UIImagePickerController alloc] init];
-	picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-	
-	picker.delegate = self;
-	picker.allowsEditing = YES;
-	picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-	[self presentModalViewController:picker animated:YES];
+	} else if ([choice isEqualToString:@"choose"]) {
+
+    }
 }
 
+
+#pragma mark - image picker methods
+
+- (void)dismissImagePicker
+{
+    [self.imagePopover dismissPopoverAnimated:YES];
+    self.imagePopover = nil;
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#define MAX_IMAGE_WIDTH 200
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (!image) image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (image) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        CGRect frame = imageView.frame;
+        while (frame.size.width > MAX_IMAGE_WIDTH) {
+            frame.size.width /= 2;
+            frame.size.height /= 2;
+        }
+        imageView.frame = frame;
+//        [self setRandomLocationForView:imageView];
+//        [self.gvaView addSubview:imageView];
+        self.imageView.image = image;
+    }
+    [self dismissImagePicker];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissImagePicker];
+}
 
 #pragma mark - helper methods
 
@@ -235,6 +278,14 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     self.informationBar.text = [self.informationBar.text stringByAppendingString:info];
 }
 
+- (void)setRandomLocationForView:(UIView *)view
+{
+    CGRect sinkBounds = CGRectInset(self.gvaView.bounds, view.frame.size.width/2, view.frame.size.height/2);
+    CGFloat x = arc4random() % (int)sinkBounds.size.width + view.frame.size.width/2;
+    CGFloat y = arc4random() % (int)sinkBounds.size.height + view.frame.size.height/2;
+    view.center = CGPointMake(x, y);
+}
+
 #pragma mark - functional area selection buttons methods
 
 - (IBAction)functionalAreaSelectionButtonsPressed:(UIButton *)sender {
@@ -244,6 +295,7 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 
 #pragma mark - reconfigurable buttons methods
 
+#define IMAGE_PICKER_IN_POPOVER YES
 - (IBAction)reconfigurableButtonsPressed:(UIButton *)sender {
     if ([sender.currentTitle isEqualToString:@"F1"]) {
         [self setInformationBarText:@"Start searching..."];
@@ -274,6 +326,24 @@ void myShowAlert(int line, char *functname, id formatstring,...)
         self.imageView.hidden = !self.readyToSendImage;
         self.sendImageButton.hidden = !self.readyToSendImage;
         self.saveImageButton.hidden = !self.readyToSendImage;
+    } else if ([sender.currentTitle isEqualToString:@"F4"]) {//open camera
+        if (!self.imagePopover && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+            
+            if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                picker.delegate = self;
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                picker.allowsEditing = YES;
+                if (IMAGE_PICKER_IN_POPOVER) {
+                    self.imagePopover = [[UIPopoverController alloc] initWithContentViewController:picker];
+                    [self.imagePopover presentPopoverFromRect:CGRectMake(0, 0, 122, 830) inView:self.gvaView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+                } else {
+                    [self presentModalViewController:picker animated:YES];
+                }
+            }
+        }
     }
 }
 
