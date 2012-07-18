@@ -59,7 +59,7 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 #pragma mark - game picker methods
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didSelectConnectionType:(GKPeerPickerConnectionType)type {
-    
+     // from Apple - Game Kit Programmiing Guide: Finding Peers with Peer Picker
     if (type == GKPeerPickerConnectionTypeOnline) {
 		picker.delegate = nil;
 		[picker dismiss];
@@ -99,12 +99,12 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 			break;
 			
 		case GKPeerStateConnected:
-			[self setInformationBarText:@"connected"];
+			[self setInformationBarText:[NSString stringWithFormat:@"connected to %@.", [session displayNameForPeer:peerID]]];
 			self.peerID = peerID;
 			break;
             
 		case GKPeerStateDisconnected:
-			[self setInformationBarText:@"disconnected"];
+			[self setInformationBarText:[NSString stringWithFormat:@"disconnected to %@.", [session displayNameForPeer:peerID]]];
 			self.session = nil;
             
 		default:
@@ -116,24 +116,23 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	NSError* error = nil;
 	[session acceptConnectionFromPeer:peerID error:&error];
 	if (error) {
-		NSLog(@"%@", error);
+		showAlert(@"%@", error);
 	}
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
-	NSLog(@"%@|%@", peerID, error);
+	showAlert(@"%@|%@", peerID, error);
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
-	NSLog(@"%@", error);
+	showAlert(@"%@", error);
 }
 
 #pragma mark - send and receive methods
 
 - (IBAction)sendText:(UIButton *)sender {
-    
     if (self.session == nil) {
-		showAlert(@"You are not connected to any devices.");
+		showAlert(@"You are not connecting to any devices.");
 		return;
 	}
     
@@ -144,31 +143,43 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 					 error:&error];
     
 	if (error) {
-		NSLog(@"%@", error);
+		showAlert(@"%@", error);
 	}
     
 	self.textField.text = @"";//clear text field
 }
 
-- (IBAction)sengImage:(id)sender {
+- (IBAction)sendImage:(id)sender {
+    if (self.session == nil) {
+		showAlert(@"You are not connecting to any devices.");
+		return;
+	}
 	
-	UIActionSheet* sheet = [[UIActionSheet alloc]
-							 initWithTitle:nil
-							 delegate:self
-							 cancelButtonTitle:@"cancel"
-							 destructiveButtonTitle:nil
-							 otherButtonTitles:@"choose", nil];
+	UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"cancel"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"choose", nil];
     
 	[sheet showInView:self.view];
 }
 
-- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
-	if ([data length] < 1024) {// receice text
+- (IBAction)saveImage:(UIButton *)sender {
+    if (self.session == nil) {
+		showAlert(@"You are not connecting to any devices.");
+		return;
+	}
+    
+    //to be add code
+}
+
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
+	if ([data length] < 1024) {// receive text
         NSLog(@"text received");
 		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
 		self.textView.text = text;
 
-		[self.textView scrollRangeToVisible:NSMakeRange([text length]-1, 1)];
+		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
 	} else {// receive image
 		NSLog(@"image received");
 		self.imageView.image = [UIImage imageWithData:data];
@@ -182,14 +193,13 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	UIImage* image = [info objectForKey:UIImagePickerControllerEditedImage];
 	
 	NSError* error = nil;
-
 	[self.session sendData:UIImageJPEGRepresentation(image, 0.5)
 				   toPeers:[NSArray arrayWithObject:self.peerID]
 			  withDataMode:GKSendDataReliable
 					 error:&error];
     
 	if (error) {
-		NSLog(@"%@", error);
+		showAlert(@"%@", error);
 	}
 }
 
@@ -199,9 +209,8 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 
 #pragma mark - action sheet methods
 
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex == 1) {// cancle
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) {// cancel
 		return;
 	}
 	
@@ -247,33 +256,24 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     } else if ([sender.currentTitle isEqualToString:@"F2"]) {// send message
         if (!self.readyToSendText) {
             self.readyToSendText = YES;
-            
-            self.textView.hidden = NO;
-            self.textField.hidden = NO;
-            self.sendTextButton.hidden = NO;
         } else {
             self.readyToSendText = NO;
-            
-            self.textView.hidden = YES;
-            self.textField.hidden = YES;
-            self.sendTextButton.hidden = YES;
         }
+        
+        self.textView.hidden = !self.readyToSendText;
+        self.textField.hidden = !self.readyToSendText;
+        self.sendTextButton.hidden = !self.readyToSendText;
         
     } else if ([sender.currentTitle isEqualToString:@"F3"]) {// send image
         if (!self.readyToSendImage) {
             self.readyToSendImage = YES;
-            
-            self.imageView.hidden = NO;
-            self.sendImageButton.hidden = NO;
-            self.saveImageButton.hidden = NO;
         } else {
             self.readyToSendImage = NO;
-            
-            self.imageView.hidden = YES;
-            self.sendImageButton.hidden = YES;
-            self.saveImageButton.hidden = YES;
         }
         
+        self.imageView.hidden = !self.readyToSendImage;
+        self.sendImageButton.hidden = !self.readyToSendImage;
+        self.saveImageButton.hidden = !self.readyToSendImage;
     }
 }
 
@@ -301,7 +301,7 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 - (void)viewDidUnload {
-    compass = nil;
+    self.compass = nil;
     [self setInformationBar:nil];
     [self setIndicator:nil];
     [self setProgressView:nil];
@@ -362,8 +362,8 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     theAnimation.fromValue = [NSNumber numberWithFloat:oldRad];
     theAnimation.toValue = [NSNumber numberWithFloat:newRad];
     theAnimation.duration = 0.5f;
-    [compass.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
-    compass.transform = CGAffineTransformMakeRotation(newRad);
+    [self.compass.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+    self.compass.transform = CGAffineTransformMakeRotation(newRad);
 	NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 }
 @end

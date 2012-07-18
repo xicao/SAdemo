@@ -13,11 +13,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate,GKPeerPickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-{
-    CLLocationManager *locationManager;
     
-    __weak IBOutlet UIImageView *compass;
-}
+@property (weak, nonatomic) IBOutlet UIImageView *compass;
 
 @property (weak, nonatomic) IBOutlet UILabel *informationBar;
 @property (nonatomic,retain) CLLocationManager *locationManager;
