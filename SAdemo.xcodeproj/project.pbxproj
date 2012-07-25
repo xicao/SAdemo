@@ -26,6 +26,9 @@
 		1E64DA6F159B46DF00B31095 /* GvaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E64DA6C159B46DF00B31095 /* GvaView.m */; };
 		1E64DA70159B46DF00B31095 /* SAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E64DA6E159B46DF00B31095 /* SAViewController.m */; };
 		1E64DA76159B490F00B31095 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E64DA75159B490F00B31095 /* button.png */; };
+		1ED0318A15C01CC00096B0F4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0318915C01CC00096B0F4 /* ImageIO.framework */; };
+		1ED0318D15C01CCC0096B0F4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0318C15C01CCC0096B0F4 /* AVFoundation.framework */; };
+		1ED0318F15C01CDA0096B0F4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0318E15C01CDA0096B0F4 /* CoreVideo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		1E64DA6D159B46DF00B31095 /* SAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAViewController.h; sourceTree = "<group>"; };
 		1E64DA6E159B46DF00B31095 /* SAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAViewController.m; sourceTree = "<group>"; };
 		1E64DA75159B490F00B31095 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		1ED0318915C01CC00096B0F4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		1ED0318C15C01CCC0096B0F4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1ED0318E15C01CDA0096B0F4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED0318F15C01CDA0096B0F4 /* CoreVideo.framework in Frameworks */,
+				1ED0318D15C01CCC0096B0F4 /* AVFoundation.framework in Frameworks */,
+				1ED0318A15C01CC00096B0F4 /* ImageIO.framework in Frameworks */,
 				1E45C96015B76E3E00F9F7E2 /* MobileCoreServices.framework in Frameworks */,
 				1E2276A715A4AA760033C6BA /* GameKit.framework in Frameworks */,
 				1E5EF927159BA5C900AE3F6A /* CFNetwork.framework in Frameworks */,
@@ -96,6 +105,9 @@
 		1E64DA4D159B462F00B31095 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1ED0318915C01CC00096B0F4 /* ImageIO.framework */,
+				1ED0318C15C01CCC0096B0F4 /* AVFoundation.framework */,
+				1ED0318E15C01CDA0096B0F4 /* CoreVideo.framework */,
 				1E45C95F15B76E3E00F9F7E2 /* MobileCoreServices.framework */,
 				1E2276A615A4AA760033C6BA /* GameKit.framework */,
 				1E5EF926159BA5C900AE3F6A /* CFNetwork.framework */,
@@ -111,15 +123,9 @@
 		1E64DA54159B462F00B31095 /* SAdemo */ = {
 			isa = PBXGroup;
 			children = (
-				1E64DA5D159B462F00B31095 /* SAdemoAppDelegate.h */,
-				1E64DA5E159B462F00B31095 /* SAdemoAppDelegate.m */,
+				1ED0319215C01D600096B0F4 /* Demo */,
+				1ED0319115C01D450096B0F4 /* GVA_View */,
 				1E64DA60159B462F00B31095 /* MainStoryboard.storyboard */,
-				1E64DA6B159B46DF00B31095 /* GvaView.h */,
-				1E64DA6C159B46DF00B31095 /* GvaView.m */,
-				1E64DA6D159B46DF00B31095 /* SAViewController.h */,
-				1E64DA6E159B46DF00B31095 /* SAViewController.m */,
-				1E64DA63159B462F00B31095 /* SAdemoViewController.h */,
-				1E64DA64159B462F00B31095 /* SAdemoViewController.m */,
 				1E64DA55159B462F00B31095 /* Supporting Files */,
 			);
 			path = SAdemo;
@@ -128,16 +134,46 @@
 		1E64DA55159B462F00B31095 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1E64DA75159B490F00B31095 /* button.png */,
-				1E5EF92A159BAC5B00AE3F6A /* icon.png */,
-				1E5EF928159BABDA00AE3F6A /* compass 2.png */,
-				1E5EF90B159B8D2000AE3F6A /* compass.png */,
+				1ED0319015C01D1D0096B0F4 /* images */,
 				1E64DA56159B462F00B31095 /* SAdemo-Info.plist */,
 				1E64DA57159B462F00B31095 /* InfoPlist.strings */,
 				1E64DA5A159B462F00B31095 /* main.m */,
 				1E64DA5C159B462F00B31095 /* SAdemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1ED0319015C01D1D0096B0F4 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1E5EF90B159B8D2000AE3F6A /* compass.png */,
+				1E5EF928159BABDA00AE3F6A /* compass 2.png */,
+				1E5EF92A159BAC5B00AE3F6A /* icon.png */,
+				1E64DA75159B490F00B31095 /* button.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		1ED0319115C01D450096B0F4 /* GVA_View */ = {
+			isa = PBXGroup;
+			children = (
+				1E64DA6B159B46DF00B31095 /* GvaView.h */,
+				1E64DA6C159B46DF00B31095 /* GvaView.m */,
+				1E64DA6E159B46DF00B31095 /* SAViewController.m */,
+				1E64DA6D159B46DF00B31095 /* SAViewController.h */,
+			);
+			name = GVA_View;
+			sourceTree = "<group>";
+		};
+		1ED0319215C01D600096B0F4 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				1E64DA63159B462F00B31095 /* SAdemoViewController.h */,
+				1E64DA64159B462F00B31095 /* SAdemoViewController.m */,
+				1E64DA5D159B462F00B31095 /* SAdemoAppDelegate.h */,
+				1E64DA5E159B462F00B31095 /* SAdemoAppDelegate.m */,
+			);
+			name = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

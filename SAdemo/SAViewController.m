@@ -171,12 +171,12 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 - (IBAction)sendImage:(id)sender {
-    /*
-    if (self.session == nil) {
-		showAlert(@"You are not connecting to any devices.");
+    
+    if (self.imageView.image == nil) {
+		showAlert(@"You are not containing any image to be send.");
 		return;
 	}
-    */
+    
 	
 //    if (self.actionSheet) {
 //        // do nothing
@@ -216,7 +216,7 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 -(void)imageSaved:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-	showAlert(@"Image saved.");
+	showAlert(@"Image saved successfully.");
 }
 
 #pragma mark - action sheet methods
@@ -230,7 +230,6 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 
     }
 }
-
 
 #pragma mark - image picker methods
 
@@ -326,6 +325,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         self.imageView.hidden = !self.readyToSendImage;
         self.sendImageButton.hidden = !self.readyToSendImage;
         self.saveImageButton.hidden = !self.readyToSendImage;
+        
     } else if ([sender.currentTitle isEqualToString:@"F4"]) {//open camera
         if (!self.imagePopover && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -401,10 +401,15 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.textField.hidden = YES;
     self.sendTextButton.hidden = YES;
     
-    self.imageView.hidden = YES;
+    
     self.sendImageButton.hidden = YES;
     self.saveImageButton.hidden = YES;
     
+    if (self.imageView.image == nil) {
+        self.imageView.hidden = YES;
+    } else {
+        self.imageView.hidden = NO;
+    }
 }
 
 #pragma mark - hide navigation bar
@@ -413,6 +418,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	[super viewWillAppear:animated];
     
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    if (self.imageView.image == nil) {
+        self.imageView.hidden = YES;
+    } else {
+        self.imageView.hidden = NO;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
