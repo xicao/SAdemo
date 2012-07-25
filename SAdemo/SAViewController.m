@@ -42,6 +42,9 @@
 @synthesize imagePopover = _imagePopover;
 @synthesize actionSheet = _actionSheet;
 
+@synthesize captureManager = _captureManager;
+@synthesize scanningLabel = _scanningLabel;
+
 # pragma mark - simple alert utility
 
 /*
@@ -61,6 +64,27 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:outstring message:nil delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil];
 	[av show];
+}
+
+#pragma mark - overlap methods
+
+- (void)scanButtonPressed {
+	[self.scanningLabel setHidden:NO];
+    [self.captureManager captureStillImage];
+}
+
+- (void)saveImageToPhotoAlbum {
+    UIImageWriteToSavedPhotosAlbum([self.captureManager stillImage], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error != NULL) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Image couldn't be saved" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else {
+        [self.scanningLabel setHidden:YES];
+    }
 }
 
 #pragma mark - game picker methods
@@ -216,7 +240,10 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 -(void)imageSaved:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-	showAlert(@"Image saved successfully.");
+    if (error == NULL)
+        showAlert(@"Image saved successfully.");
+    else
+        showAlert(@"Image could not be saved.");
 }
 
 #pragma mark - action sheet methods
@@ -344,6 +371,45 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                 }
             }
         }
+        
+    } else if ([sender.currentTitle isEqualToString:@"F5"]) {//video
+        [self setCaptureManager:[[CaptureSessionManager alloc] init]];
+        
+        [self.captureManager addVideoInputFrontCamera:NO]; // set to YES for Front Camera, No for Back camera
+        
+        [self.captureManager addStillImageOutput];
+        
+        [self.captureManager addVideoPreviewLayer];
+        CGRect layerRect = self.gvaView.layer.bounds;
+        [self.captureManager.previewLayer setBounds:layerRect];
+        [self.captureManager.previewLayer setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
+        [self.gvaView.layer addSublayer:self.captureManager.previewLayer];
+        
+        UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlaygraphic.png"]];
+        [overlayImageView setFrame:CGRectMake(30, 100, 260, 200)];
+        [self.gvaView addSubview:overlayImageView];
+        
+        UIButton *overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
+        [overlayButton setFrame:CGRectMake(130, 320, 60, 30)];
+        [overlayButton addTarget:self action:@selector(scanButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.gvaView addSubview:overlayButton];
+        
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 120, 30)];
+        [self setScanningLabel:tempLabel];
+
+        [self.scanningLabel setBackgroundColor:[UIColor clearColor]];
+        [self.scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 18.0]];
+        [self.scanningLabel setTextColor:[UIColor redColor]];
+        [self.scanningLabel setText:@"Saving..."];
+        [self.scanningLabel setHidden:YES];
+        [self.gvaView addSubview:self.scanningLabel];
+        
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(saveImageToPhotoAlbum) name:kImageCapturedSuccessfully object:nil];
+        
+        [[self.captureManager captureSession] startRunning];
+        
+    } else if ([sender.currentTitle isEqualToString:@"F6"]) {//to be done
     }
 }
 

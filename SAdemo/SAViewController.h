@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <GameKit/GameKit.h>
 #import <Foundation/Foundation.h>
+#import "CaptureSessionManager.h"
 
 @interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate,GKPeerPickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
     
@@ -32,5 +33,7 @@
 @property (nonatomic, retain) GKSession* session;
 @property (nonatomic, retain) NSString* peerID;
 
+@property (retain) CaptureSessionManager *captureManager;
+@property (nonatomic, retain) UILabel *scanningLabel;
 
 @end

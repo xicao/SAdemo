@@ -29,6 +29,10 @@
 		1ED0318A15C01CC00096B0F4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0318915C01CC00096B0F4 /* ImageIO.framework */; };
 		1ED0318D15C01CCC0096B0F4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0318C15C01CCC0096B0F4 /* AVFoundation.framework */; };
 		1ED0318F15C01CDA0096B0F4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0318E15C01CDA0096B0F4 /* CoreVideo.framework */; };
+		1ED0319515C04D130096B0F4 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0319415C04D130096B0F4 /* CaptureSessionManager.m */; };
+		1ED0319815C04D2E0096B0F4 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ED0319615C04D2E0096B0F4 /* overlaygraphic.png */; };
+		1ED0319915C04D2E0096B0F4 /* scanbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ED0319715C04D2E0096B0F4 /* scanbutton.png */; };
+		1ED0319B15C051340096B0F4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0319A15C051340096B0F4 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +65,11 @@
 		1ED0318915C01CC00096B0F4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		1ED0318C15C01CCC0096B0F4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1ED0318E15C01CDA0096B0F4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		1ED0319315C04D130096B0F4 /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
+		1ED0319415C04D130096B0F4 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
+		1ED0319615C04D2E0096B0F4 /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
+		1ED0319715C04D2E0096B0F4 /* scanbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanbutton.png; sourceTree = "<group>"; };
+		1ED0319A15C051340096B0F4 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED0319B15C051340096B0F4 /* CoreMedia.framework in Frameworks */,
 				1ED0318F15C01CDA0096B0F4 /* CoreVideo.framework in Frameworks */,
 				1ED0318D15C01CCC0096B0F4 /* AVFoundation.framework in Frameworks */,
 				1ED0318A15C01CC00096B0F4 /* ImageIO.framework in Frameworks */,
@@ -105,6 +115,7 @@
 		1E64DA4D159B462F00B31095 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1ED0319A15C051340096B0F4 /* CoreMedia.framework */,
 				1ED0318915C01CC00096B0F4 /* ImageIO.framework */,
 				1ED0318C15C01CCC0096B0F4 /* AVFoundation.framework */,
 				1ED0318E15C01CDA0096B0F4 /* CoreVideo.framework */,
@@ -123,6 +134,8 @@
 		1E64DA54159B462F00B31095 /* SAdemo */ = {
 			isa = PBXGroup;
 			children = (
+				1ED0319315C04D130096B0F4 /* CaptureSessionManager.h */,
+				1ED0319415C04D130096B0F4 /* CaptureSessionManager.m */,
 				1ED0319215C01D600096B0F4 /* Demo */,
 				1ED0319115C01D450096B0F4 /* GVA_View */,
 				1E64DA60159B462F00B31095 /* MainStoryboard.storyboard */,
@@ -146,6 +159,8 @@
 		1ED0319015C01D1D0096B0F4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1ED0319615C04D2E0096B0F4 /* overlaygraphic.png */,
+				1ED0319715C04D2E0096B0F4 /* scanbutton.png */,
 				1E5EF90B159B8D2000AE3F6A /* compass.png */,
 				1E5EF928159BABDA00AE3F6A /* compass 2.png */,
 				1E5EF92A159BAC5B00AE3F6A /* icon.png */,
@@ -233,6 +248,8 @@
 				1E5EF90C159B8D2000AE3F6A /* compass.png in Resources */,
 				1E5EF929159BABDA00AE3F6A /* compass 2.png in Resources */,
 				1E5EF92B159BAC5B00AE3F6A /* icon.png in Resources */,
+				1ED0319815C04D2E0096B0F4 /* overlaygraphic.png in Resources */,
+				1ED0319915C04D2E0096B0F4 /* scanbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +265,7 @@
 				1E64DA65159B462F00B31095 /* SAdemoViewController.m in Sources */,
 				1E64DA6F159B46DF00B31095 /* GvaView.m in Sources */,
 				1E64DA70159B46DF00B31095 /* SAViewController.m in Sources */,
+				1ED0319515C04D130096B0F4 /* CaptureSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
