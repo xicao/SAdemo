@@ -35,5 +35,8 @@
 
 @property (retain) CaptureSessionManager *captureManager;
 @property (nonatomic, retain) UILabel *scanningLabel;
+@property (nonatomic, retain) UIImageView *overlayImageView;
+@property (nonatomic, retain) UIButton *overlayButton;
+
 
 @end

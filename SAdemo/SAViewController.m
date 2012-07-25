@@ -44,6 +44,8 @@
 
 @synthesize captureManager = _captureManager;
 @synthesize scanningLabel = _scanningLabel;
+@synthesize overlayButton = _overlayButton;
+@synthesize overlayImageView = _overlayImageView;
 
 # pragma mark - simple alert utility
 
@@ -67,6 +69,22 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 #pragma mark - overlap methods
+
+- (UIImageView *)overlayImageView {
+    if (!_overlayImageView) {
+        _overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlaygraphic.png"]];
+    }
+    
+    return _overlayImageView;
+}
+
+- (UIButton *)overlayButton {
+    if (!_overlayButton) {
+        _overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    }
+    
+    return _overlayButton;
+}
 
 - (void)scanButtonPressed {
 	[self.scanningLabel setHidden:NO];
@@ -380,22 +398,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         [self.captureManager addStillImageOutput];
         
         [self.captureManager addVideoPreviewLayer];
-        CGRect layerRect = self.gvaView.layer.bounds;
+        CGRect layerRect = CGRectMake(505, 173, 240, 240);
         [self.captureManager.previewLayer setBounds:layerRect];
         [self.captureManager.previewLayer setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
         [self.gvaView.layer addSublayer:self.captureManager.previewLayer];
         
-        UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlaygraphic.png"]];
-        [overlayImageView setFrame:CGRectMake(30, 100, 260, 200)];
-        [self.gvaView addSubview:overlayImageView];
+        [self.overlayImageView setFrame:CGRectMake(525, 193, 200, 200)];
+        [self.gvaView addSubview:self.overlayImageView];
         
-        UIButton *overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
-        [overlayButton setFrame:CGRectMake(130, 320, 60, 30)];
-        [overlayButton addTarget:self action:@selector(scanButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        [self.gvaView addSubview:overlayButton];
+        [self.overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
+        [self.overlayButton setFrame:CGRectMake(525, 275, 200, 200)];
+        [self.overlayButton addTarget:self action:@selector(scanButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.gvaView addSubview:self.overlayButton];
         
-        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 120, 30)];
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(585, 175, 400, 200)];
         [self setScanningLabel:tempLabel];
 
         [self.scanningLabel setBackgroundColor:[UIColor clearColor]];
@@ -407,9 +423,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(saveImageToPhotoAlbum) name:kImageCapturedSuccessfully object:nil];
         
-        [[self.captureManager captureSession] startRunning];
+        [self.captureManager.captureSession startRunning];
         
     } else if ([sender.currentTitle isEqualToString:@"F6"]) {//to be done
+        [self.captureManager.captureSession stopRunning];
+        self.captureManager.previewLayer.hidden = YES;
+        self.scanningLabel.hidden = YES;
+        self.overlayImageView.hidden = YES;
+        self.overlayButton.hidden = YES;
     }
 }
 

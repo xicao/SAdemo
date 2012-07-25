@@ -276,6 +276,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="Mp5-0r-2GG"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="q21-jb-IOe">
                                         <rect key="frame" x="60" y="313" width="62" height="62"/>
@@ -502,7 +505,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="fPK-sy-dzf">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="V_STOP" textAlignment="center" autoshrinkMode="minimumFontSize" id="fPK-sy-dzf">
                                         <rect key="frame" x="146" y="523" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -985,6 +988,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="Jyl-aj-eaX"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uNF-8U-x60">
                                         <rect key="frame" x="60" y="313" width="62" height="62"/>
@@ -1211,7 +1217,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="" autoshrinkMode="minimumFontSize" id="MPe-Ki-yOW">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" minimumFontSize="10" text="V_STOP" textAlignment="center" autoshrinkMode="minimumFontSize" id="MPe-Ki-yOW">
                                         <rect key="frame" x="146" y="522" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
