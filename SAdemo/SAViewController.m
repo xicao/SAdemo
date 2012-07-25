@@ -423,6 +423,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(saveImageToPhotoAlbum) name:kImageCapturedSuccessfully object:nil];
         
+        self.captureManager.previewLayer.hidden = NO;
+        self.overlayImageView.hidden = NO;
+        self.overlayButton.hidden = NO;
         [self.captureManager.captureSession startRunning];
         
     } else if ([sender.currentTitle isEqualToString:@"F6"]) {//to be done
