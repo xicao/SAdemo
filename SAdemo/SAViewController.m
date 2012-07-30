@@ -168,18 +168,23 @@ void myShowAlert(int line, char *functname, id formatstring,...)
                                    orientation:UIImageOrientationUp];
     
     CGImageRelease(newImage);
-
+    
+    
     [self.imageView performSelectorOnMainThread:@selector(setImage:)
                                      withObject:image waitUntilDone:YES];
     
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+
+    if ([self.mode.text isEqualToString:@"Controller"]) {
+
     
     NSError* error = nil;
-	NSData* imageData = UIImageJPEGRepresentation(self.imageView.image, 0.5);
+	NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
 	[self.session sendData:imageData
 				   toPeers:[NSArray arrayWithObject:self.peerID]
 			  withDataMode:GKSendDataReliable
 					 error:&error];
+    }
 }
 
 
@@ -222,17 +227,17 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     
     switch (state) {
 		case GKPeerStateAvailable:
-			[self setInformationBarText:[NSString stringWithFormat:@"connecting to %@ ...", [session displayNameForPeer:peerID]]];
+			[self setInformationBarText:[NSString stringWithFormat:@"Connecting to %@ ...", [session displayNameForPeer:peerID]]];
 			[session connectToPeer:peerID withTimeout:10];
 			break;
 			
 		case GKPeerStateConnected:
-			[self setInformationBarText:[NSString stringWithFormat:@"connected to %@.", [session displayNameForPeer:peerID]]];
+			[self setInformationBarText:[NSString stringWithFormat:@"Connected to %@.", [session displayNameForPeer:peerID]]];
 			self.peerID = peerID;
 			break;
             
 		case GKPeerStateDisconnected:
-			[self setInformationBarText:[NSString stringWithFormat:@"disconnected to %@.", [session displayNameForPeer:peerID]]];
+			[self setInformationBarText:[NSString stringWithFormat:@"Disconnected to %@.", [session displayNameForPeer:peerID]]];
 			self.session = nil;
             
 		default:
@@ -267,7 +272,9 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
 	} else {// receive image
 		NSLog(@"image received");
-		self.imageView.image = [UIImage imageWithData:data];
+		//self.imageView.image = [UIImage imageWithData:data];
+        [self.imageView performSelectorOnMainThread:@selector(setImage:)
+                                         withObject:[UIImage imageWithData:data] waitUntilDone:YES];
 	}
 }
 
@@ -539,7 +546,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         
         AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
         
-        self.videoOutput.alwaysDiscardsLateVideoFrames = NO;
+        self.videoOutput.alwaysDiscardsLateVideoFrames = YES;
         
         self.videoOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
         
@@ -555,6 +562,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             } else {
                 NSLog(@"Couldn't add back facing video output.");
             }
+            
+            self.captureSession.sessionPreset = AVCaptureSessionPresetLow;
             
             dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
             [self.videoOutput setSampleBufferDelegate:self queue:queue];
