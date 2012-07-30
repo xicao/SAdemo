@@ -47,6 +47,9 @@
 @synthesize overlayButton = _overlayButton;
 @synthesize overlayImageView = _overlayImageView;
 
+@synthesize videoOutput = _videoOutput;
+@synthesize captureSession = _captureSession;
+
 # pragma mark - simple alert utility
 
 /*
@@ -86,6 +89,22 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     return _overlayButton;
 }
 
+- (AVCaptureVideoDataOutput *)videoOutput {
+    if (!_videoOutput) {
+        _videoOutput = [[AVCaptureVideoDataOutput alloc]init];
+    }
+    
+    return _videoOutput;
+}
+
+- (AVCaptureSession *)captureSession {
+    if (!_captureSession) {
+        _captureSession = [[AVCaptureSession alloc]init];
+    }
+    
+    return _captureSession;
+}
+
 - (void)scanButtonPressed {
 	[self.scanningLabel setHidden:NO];
     [self.captureManager captureStillImage];
@@ -104,6 +123,50 @@ void myShowAlert(int line, char *functname, id formatstring,...)
         [self.scanningLabel setHidden:YES];
     }
 }
+
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    if ([self.mode.text isEqualToString:@"Crew-point"]) {
+        NSData *data = [NSData dataWithBytes:&sampleBuffer length:malloc_size(sampleBuffer)];
+        
+        [self tranferDataToVideo:data];
+    }
+}
+
+- (void)tranferDataToVideo:(NSData *)data {
+    CMSampleBufferRef sampleBuffer;
+    [data getBytes:&sampleBuffer length:sizeof(sampleBuffer)];
+    
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferLockBaseAddress(imageBuffer,0);
+    uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef newContext = CGBitmapContextCreate(baseAddress,
+                                                    width,height,
+                                                    8,
+                                                    bytesPerRow,
+                                                    colorSpace,
+                                                    kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    
+    CGImageRef newImage = CGBitmapContextCreateImage(newContext);
+    
+    CGContextRelease(newContext);
+    CGColorSpaceRelease(colorSpace);
+    
+    UIImage *image = [UIImage imageWithCGImage:newImage
+                                         scale:1.0
+                                   orientation:UIImageOrientationRight];
+    
+    CGImageRelease(newImage);
+    [self.imageView performSelectorOnMainThread:@selector(setImage:)
+                                     withObject:image waitUntilDone:YES];
+    
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+}
+
 
 #pragma mark - game picker methods
 
@@ -390,7 +453,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             }
         }
         
-    } else if ([sender.currentTitle isEqualToString:@"F5"]) {//video
+    } else if ([sender.currentTitle isEqualToString:@"F7"]) {//video
         [self setCaptureManager:[[CaptureSessionManager alloc] init]];
         
         [self.captureManager addVideoInputFrontCamera:NO]; // set to YES for Front Camera, No for Back camera
@@ -428,12 +491,64 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         self.overlayButton.hidden = NO;
         [self.captureManager.captureSession startRunning];
         
-    } else if ([sender.currentTitle isEqualToString:@"F6"]) {//to be done
+    } else if ([sender.currentTitle isEqualToString:@"F8"]) {//to be done
         [self.captureManager.captureSession stopRunning];
         self.captureManager.previewLayer.hidden = YES;
         self.scanningLabel.hidden = YES;
         self.overlayImageView.hidden = YES;
         self.overlayButton.hidden = YES;
+    }else if ([sender.currentTitle isEqualToString:@"F5"]) {
+        NSArray *devices = [AVCaptureDevice devices];
+        AVCaptureDevice *frontCamera;
+        AVCaptureDevice *backCamera;
+        
+        for (AVCaptureDevice *device in devices) {
+            NSLog(@"Device name: %@", [device localizedName]);
+            
+            if ([device hasMediaType:AVMediaTypeVideo]) {
+                
+                if ([device position] == AVCaptureDevicePositionBack) {
+                    NSLog(@"Device position : back");
+                    backCamera = device;
+                }
+                else {
+                    NSLog(@"Device position : front");
+                    frontCamera = device;
+                }
+            }
+        }
+    
+        NSError *error = nil;
+        
+        AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
+
+        self.videoOutput.alwaysDiscardsLateVideoFrames = NO;
+        
+        self.videoOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+        
+        if (!error) {
+            if ([self.captureSession canAddInput:backFacingCameraDeviceInput]) {
+                [self.captureSession addInput:backFacingCameraDeviceInput];
+            } else {
+                NSLog(@"Couldn't add back facing video input.");
+            }
+            
+            if ([self.captureSession canAddOutput:self.videoOutput]) {
+                [self.captureSession addOutput:self.videoOutput];
+            } else {
+                NSLog(@"Couldn't add back facing video output.");
+            }
+            
+            dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
+            [self.videoOutput setSampleBufferDelegate:self queue:queue];
+            
+            dispatch_release(queue);
+            [self.captureSession startRunning];
+        }
+        
+    
+    
+    }else if ([sender.currentTitle isEqualToString:@"F6"]) {
     }
 }
 

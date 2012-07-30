@@ -11,9 +11,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import <GameKit/GameKit.h>
 #import <Foundation/Foundation.h>
+#import  <AVFoundation/AVFoundation.h>
 #import "CaptureSessionManager.h"
 
-@interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate,GKPeerPickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface SAViewController : UIViewController<CLLocationManagerDelegate,GKSessionDelegate,GKPeerPickerControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AVCaptureVideoDataOutputSampleBufferDelegate>
     
 @property (weak, nonatomic) IBOutlet UIImageView *compass;
 
@@ -38,5 +39,7 @@
 @property (nonatomic, retain) UIImageView *overlayImageView;
 @property (nonatomic, retain) UIButton *overlayButton;
 
+@property (nonatomic, retain) AVCaptureVideoDataOutput *videoOutput;
+@property (nonatomic, retain) AVCaptureSession *captureSession;
 
 @end
