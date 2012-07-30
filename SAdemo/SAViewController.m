@@ -277,9 +277,16 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
 	if ([data length] < 1024) {// receive text
         NSLog(@"text received");
         if ([self.mode.text isEqualToString:@"Crew-point"]) {
-            
+
             NSString* text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            self.scanningLabel.text = text;
+            
+            if ([text isEqualToString:@"iWantToStopOverlay"]) {
+                self.scanningLabel.text = @"";
+            } else if ([text isEqualToString:@"iWantToStopVideo"]) {
+                self.imageView.image = nil;
+            } else {
+                self.scanningLabel.text = text;
+            }
             
             //[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
         }
@@ -586,9 +593,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             [self.captureSession startRunning];
         }
         
-    } else if ([sender.currentTitle isEqualToString:@"F6"]) {
+    } else if ([sender.currentTitle isEqualToString:@"F6"]) { // stop video
         self.imageView.image = nil;
         [self.captureSession stopRunning];
+        self.imageView.image = nil;
+        
+        if (self.session != nil) {
+            NSError* error = nil;
+            [self.session sendData:[@"iWantToStopVideo" dataUsingEncoding:NSUTF8StringEncoding]
+                           toPeers:[NSArray arrayWithObject:self.peerID]
+                      withDataMode:GKSendDataReliable
+                             error:&error];
+        }
         
     } else if ([sender.currentTitle isEqualToString:@"F10"]) { // overlay
         self.startOverlay = YES;
@@ -598,6 +614,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         self.startOverlay = NO;
         self.scanningLabel.text = @"";
         [self.locationManager stopUpdatingLocation];
+        
+        if (self.session != nil) {
+            NSError* error = nil;
+            [self.session sendData:[@"iWantToStopOverlay" dataUsingEncoding:NSUTF8StringEncoding]
+                           toPeers:[NSArray arrayWithObject:self.peerID]
+                      withDataMode:GKSendDataReliable
+                             error:&error];
+        }
         
     }
 }
