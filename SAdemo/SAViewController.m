@@ -59,8 +59,7 @@
  BSD License
  */
 #define showAlert(format, ...) myShowAlert(__LINE__, (char *)__FUNCTION__, format, ##__VA_ARGS__)
-void myShowAlert(int line, char *functname, id formatstring,...)
-{
+void myShowAlert(int line, char *functname, id formatstring,...) {
 	va_list arglist;
 	if (!formatstring) return;
 	va_start(arglist, formatstring);
@@ -71,7 +70,8 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	[av show];
 }
 
-#pragma mark - overlap methods
+#pragma mark - lazy instantiation
+
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc]init];
@@ -112,6 +112,8 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     return _captureSession;
 }
 
+#pragma mark - overlap methods
+
 - (void)scanButtonPressed {
 	[self.scanningLabel setHidden:NO];
     [self.captureManager captureStillImage];
@@ -138,7 +140,6 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 - (void)tranferDataToVideo:(NSData *)data {
-    //NSLog(@"tran");
     
     CMSampleBufferRef sampleBuffer;
     [data getBytes:&sampleBuffer length:sizeof(sampleBuffer)];
@@ -174,16 +175,15 @@ void myShowAlert(int line, char *functname, id formatstring,...)
                                      withObject:image waitUntilDone:YES];
     
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-
-    if ([self.mode.text isEqualToString:@"Controller"]) {
-
     
-    NSError* error = nil;
-	NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
-	[self.session sendData:imageData
-				   toPeers:[NSArray arrayWithObject:self.peerID]
-			  withDataMode:GKSendDataReliable
-					 error:&error];
+    if ([self.mode.text isEqualToString:@"Controller"]) {
+        
+        NSError* error = nil;
+        NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
+        [self.session sendData:imageData
+                       toPeers:[NSArray arrayWithObject:self.peerID]
+                  withDataMode:GKSendDataReliable
+                         error:&error];
     }
 }
 
@@ -409,8 +409,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.informationBar.text = [self.informationBar.text stringByAppendingString:info];
 }
 
-- (void)setRandomLocationForView:(UIView *)view
-{
+- (void)setRandomLocationForView:(UIView *)view {
     CGRect sinkBounds = CGRectInset(self.gvaView.bounds, view.frame.size.width/2, view.frame.size.height/2);
     CGFloat x = arc4random() % (int)sinkBounds.size.width + view.frame.size.width/2;
     CGFloat y = arc4random() % (int)sinkBounds.size.height + view.frame.size.height/2;
@@ -530,12 +529,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             NSLog(@"Device name: %@", [device localizedName]);
             
             if ([device hasMediaType:AVMediaTypeVideo]) {
-                
                 if ([device position] == AVCaptureDevicePositionBack) {
                     NSLog(@"Device position : back");
                     backCamera = device;
-                }
-                else {
+                } else {
                     NSLog(@"Device position : front");
                     frontCamera = device;
                 }
@@ -543,7 +540,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         }
         
         NSError *error = nil;
-        
         AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
         
         self.videoOutput.alwaysDiscardsLateVideoFrames = NO;
@@ -563,7 +559,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                 NSLog(@"Couldn't add back facing video output.");
             }
             
-            self.captureSession.sessionPreset = AVCaptureSessionPresetLow;
+            self.captureSession.sessionPreset = AVCaptureSessionPresetMedium;
             
             dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
             [self.videoOutput setSampleBufferDelegate:self queue:queue];
@@ -572,11 +568,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             [self.captureSession startRunning];
         }
         
-        
-        
-        
-        
     }else if ([sender.currentTitle isEqualToString:@"F6"]) {
+        self.imageView.image = nil;
+        [self.captureSession stopRunning];
     }
 }
 
@@ -590,14 +584,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 #pragma mark - view methods
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
     //[[UIApplication sharedApplication] setStatusBarHidden:YES];// hide status bar
     return UIInterfaceOrientationIsLandscape(orientation);// only support landscape
 }
 
-- (void)setGvaView:(GvaView *)gvaView
-{
+- (void)setGvaView:(GvaView *)gvaView {
     _gvaView = gvaView;
     [self.gvaView setNeedsDisplay];
     [self.gvaView setNeedsLayout];
@@ -618,7 +610,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [super viewDidUnload];
 }
 
-- (void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	locationManager = [[CLLocationManager alloc] init];
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -654,7 +646,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 #pragma mark - compass method
 #pragma mark - referene: http://blog.objectgraph.com/index.php/2012/01/10/how-to-create-a-compass-in-iphone/
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
 	// Convert Degree to Radian and move the needle
 	float oldRad = -manager.heading.trueHeading * M_PI / 180.0f;
 	float newRad = -newHeading.trueHeading * M_PI / 180.0f;
@@ -667,4 +659,5 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.compass.transform = CGAffineTransformMakeRotation(newRad);
 	//NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 }
+
 @end

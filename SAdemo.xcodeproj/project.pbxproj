@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E2276A715A4AA760033C6BA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E2276A615A4AA760033C6BA /* GameKit.framework */; };
+		1E2CB0B515C6F39200C3F5E3 /* SBTableAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CB0B415C6F39200C3F5E3 /* SBTableAlert.m */; };
+		1E2CB0BA15C6F3EA00C3F5E3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E2CB0B915C6F3EA00C3F5E3 /* LICENSE */; };
 		1E45C96015B76E3E00F9F7E2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E45C95F15B76E3E00F9F7E2 /* MobileCoreServices.framework */; };
 		1E5EF90C159B8D2000AE3F6A /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EF90B159B8D2000AE3F6A /* compass.png */; };
 		1E5EF923159BA59800AE3F6A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF922159BA59800AE3F6A /* CoreLocation.framework */; };
@@ -37,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		1E2276A615A4AA760033C6BA /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		1E2CB0B315C6F39200C3F5E3 /* SBTableAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTableAlert.h; sourceTree = "<group>"; };
+		1E2CB0B415C6F39200C3F5E3 /* SBTableAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTableAlert.m; sourceTree = "<group>"; };
+		1E2CB0B915C6F3EA00C3F5E3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1E45C95F15B76E3E00F9F7E2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1E5EF90B159B8D2000AE3F6A /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		1E5EF922159BA59800AE3F6A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -95,6 +100,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E2CB0B715C6F39F00C3F5E3 /* SBTableAlert */ = {
+			isa = PBXGroup;
+			children = (
+				1E2CB0B915C6F3EA00C3F5E3 /* LICENSE */,
+				1E2CB0B315C6F39200C3F5E3 /* SBTableAlert.h */,
+				1E2CB0B415C6F39200C3F5E3 /* SBTableAlert.m */,
+			);
+			name = SBTableAlert;
+			sourceTree = "<group>";
+		};
+		1E2CB0B815C6F3BA00C3F5E3 /* CaptureSessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				1ED0319315C04D130096B0F4 /* CaptureSessionManager.h */,
+				1ED0319415C04D130096B0F4 /* CaptureSessionManager.m */,
+			);
+			name = CaptureSessionManager;
+			sourceTree = "<group>";
+		};
 		1E64DA3F159B462F00B31095 = {
 			isa = PBXGroup;
 			children = (
@@ -134,8 +158,8 @@
 		1E64DA54159B462F00B31095 /* SAdemo */ = {
 			isa = PBXGroup;
 			children = (
-				1ED0319315C04D130096B0F4 /* CaptureSessionManager.h */,
-				1ED0319415C04D130096B0F4 /* CaptureSessionManager.m */,
+				1E2CB0B815C6F3BA00C3F5E3 /* CaptureSessionManager */,
+				1E2CB0B715C6F39F00C3F5E3 /* SBTableAlert */,
 				1ED0319215C01D600096B0F4 /* Demo */,
 				1ED0319115C01D450096B0F4 /* GVA_View */,
 				1E64DA60159B462F00B31095 /* MainStoryboard.storyboard */,
@@ -174,8 +198,8 @@
 			children = (
 				1E64DA6B159B46DF00B31095 /* GvaView.h */,
 				1E64DA6C159B46DF00B31095 /* GvaView.m */,
-				1E64DA6E159B46DF00B31095 /* SAViewController.m */,
 				1E64DA6D159B46DF00B31095 /* SAViewController.h */,
+				1E64DA6E159B46DF00B31095 /* SAViewController.m */,
 			);
 			name = GVA_View;
 			sourceTree = "<group>";
@@ -250,6 +274,7 @@
 				1E5EF92B159BAC5B00AE3F6A /* icon.png in Resources */,
 				1ED0319815C04D2E0096B0F4 /* overlaygraphic.png in Resources */,
 				1ED0319915C04D2E0096B0F4 /* scanbutton.png in Resources */,
+				1E2CB0BA15C6F3EA00C3F5E3 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +291,7 @@
 				1E64DA6F159B46DF00B31095 /* GvaView.m in Sources */,
 				1E64DA70159B46DF00B31095 /* SAViewController.m in Sources */,
 				1ED0319515C04D130096B0F4 /* CaptureSessionManager.m in Sources */,
+				1E2CB0B515C6F39200C3F5E3 /* SBTableAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
