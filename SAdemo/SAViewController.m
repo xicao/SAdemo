@@ -9,11 +9,13 @@
 #import "SAViewController.h"
 #import "GvaView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#include <stdio.h>
 
 @interface SAViewController ()
 @property (nonatomic, weak) IBOutlet GvaView *gvaView;
 @property BOOL readyToSendText;
 @property BOOL readyToSendImage;
+@property BOOL startOverlay;
 
 @property (nonatomic, strong) UIPopoverController *imagePopover;
 @property (weak, nonatomic) UIActionSheet *actionSheet;
@@ -35,7 +37,7 @@
 
 @synthesize gvaView = _gvaView;
 @synthesize informationBar = _informationBar;
-@synthesize locationManager;
+@synthesize locationManager = _locationManager;
 @synthesize session = _session;
 @synthesize peerID = _peerID;
 
@@ -71,6 +73,14 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
 }
 
 #pragma mark - lazy instantiation
+
+- (UILabel *)scanningLabel {
+    if (!_scanningLabel) {
+        _scanningLabel = [[UILabel alloc] initWithFrame:self.imageView.frame];
+    }
+    
+    return _scanningLabel;
+}
 
 - (UIImageView *)imageView {
     if (!_imageView) {
@@ -176,7 +186,7 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
     
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
     
-    if ([self.mode.text isEqualToString:@"Controller"]) {
+    if ([self.mode.text isEqualToString:@"Controller"] && self.session != nil) {
         
         NSError* error = nil;
         NSData* imageData = UIImageJPEGRepresentation(image, 0.5);
@@ -266,10 +276,18 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession: (GKSession *)session context:(void *)context {
 	if ([data length] < 1024) {// receive text
         NSLog(@"text received");
-		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-		self.textView.text = text;
-        
-		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
+        if ([self.mode.text isEqualToString:@"Crew-point"]) {
+            
+            NSString* text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            self.scanningLabel.text = text;
+            
+            //[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
+        }
+//        NSLog(@"text received");
+//		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+//		self.textView.text = text;
+//        
+//		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
 	} else {// receive image
 		NSLog(@"image received");
 		//self.imageView.image = [UIImage imageWithData:data];
@@ -568,9 +586,19 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             [self.captureSession startRunning];
         }
         
-    }else if ([sender.currentTitle isEqualToString:@"F6"]) {
+    } else if ([sender.currentTitle isEqualToString:@"F6"]) {
         self.imageView.image = nil;
         [self.captureSession stopRunning];
+        
+    } else if ([sender.currentTitle isEqualToString:@"F10"]) { // overlay
+        self.startOverlay = YES;
+        [self.locationManager startUpdatingLocation];
+        
+    } else if ([sender.currentTitle isEqualToString:@"F11"]) { // close overlay
+        self.startOverlay = NO;
+        self.scanningLabel.text = @"";
+        [self.locationManager stopUpdatingLocation];
+        
     }
 }
 
@@ -612,12 +640,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	locationManager = [[CLLocationManager alloc] init];
-	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-	locationManager.headingFilter = 1;
-	locationManager.delegate = self;
-	[locationManager startUpdatingHeading];
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	self.locationManager.headingFilter = 1;
+	self.locationManager.delegate = self;
+	[self.locationManager startUpdatingHeading];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
     
+    self.informationBar.numberOfLines = 3;
     self.informationBar.text = @"";
     self.indicator.hidesWhenStopped = YES;
     self.progressView.hidden = YES;
@@ -628,6 +658,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     self.sendImageButton.hidden = YES;
     self.saveImageButton.hidden = YES;
+    
+    self.scanningLabel.numberOfLines = 2;
+    [self.scanningLabel setBackgroundColor:[UIColor clearColor]];
+    [self.scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 15.0]];
+    [self.scanningLabel setTextColor:[UIColor redColor]];
+    //[self.scanningLabel setHidden:YES];
+    [self.gvaView addSubview:self.scanningLabel];
 }
 
 #pragma mark - hide navigation bar
@@ -659,5 +696,26 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.compass.transform = CGAffineTransformMakeRotation(newRad);
 	//NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 }
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    //NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
+    //NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    
+    if ([self.mode.text isEqualToString:@"Controller"]) {
+        if (self.startOverlay) {
+            [self.scanningLabel setText:[NSString stringWithFormat:@"OldLocation %d %d =>\nNewLocation %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
+            
+            if (self.session != nil) {
+                //NSLog(@"here");
+                NSError* error = nil;
+                [self.session sendData:[self.scanningLabel.text dataUsingEncoding:NSUTF8StringEncoding]
+                               toPeers:[NSArray arrayWithObject:self.peerID]
+                          withDataMode:GKSendDataReliable
+                                 error:&error];
+            }
+        }
+    }
+}
+
 
 @end

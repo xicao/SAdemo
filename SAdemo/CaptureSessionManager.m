@@ -20,7 +20,6 @@
 - (void)addVideoPreviewLayer {
 	[self setPreviewLayer:[[AVCaptureVideoPreviewLayer alloc] initWithSession:[self captureSession]]];
 	[[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-  
 }
 
 - (void)addVideoInputFrontCamera:(BOOL)front {

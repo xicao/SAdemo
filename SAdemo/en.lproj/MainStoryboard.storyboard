@@ -341,6 +341,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="Im8-iq-xIK"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k2p-nd-IVg">
                                         <rect key="frame" x="902" y="453" width="62" height="62"/>
@@ -354,6 +357,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="reconfigurableButtonsPressed:" destination="B9O-hE-1ap" eventType="touchUpInside" id="d5y-QQ-jZJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WVL-Re-3s4">
                                         <rect key="frame" x="902" y="523" width="62" height="62"/>
@@ -552,7 +558,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="J8o-jg-MpD">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="O_STOP" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="J8o-jg-MpD">
                                         <rect key="frame" x="786" y="453" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
@@ -568,7 +574,7 @@
                                         <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="koM-74-dG6">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="OVERLAY" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="koM-74-dG6">
                                         <rect key="frame" x="786" y="383" width="93" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.13483281320000001" green="0.66841457199999998" blue="0.2179982235" alpha="1" colorSpace="calibratedRGB"/>
