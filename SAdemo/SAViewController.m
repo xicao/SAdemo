@@ -53,10 +53,10 @@
 # pragma mark - simple alert utility
 
 /*
-  Reference:
-  Erica Sadun, http://ericasadun.com
-  iPhone Developer's Cookbook, 3.0 Edition
-  BSD License
+ Reference:
+ Erica Sadun, http://ericasadun.com
+ iPhone Developer's Cookbook, 3.0 Edition
+ BSD License
  */
 #define showAlert(format, ...) myShowAlert(__LINE__, (char *)__FUNCTION__, format, ##__VA_ARGS__)
 void myShowAlert(int line, char *functname, id formatstring,...)
@@ -72,6 +72,13 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 #pragma mark - overlap methods
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc]init];
+    }
+    
+    return _imageView;
+}
 
 - (UIImageView *)overlayImageView {
     if (!_overlayImageView) {
@@ -125,14 +132,14 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-    if ([self.mode.text isEqualToString:@"Crew-point"]) {
-        NSData *data = [NSData dataWithBytes:&sampleBuffer length:malloc_size(sampleBuffer)];
-        
-        [self tranferDataToVideo:data];
-    }
+    NSData *data = [NSData dataWithBytes:&sampleBuffer length:malloc_size(sampleBuffer)];
+    
+    [self tranferDataToVideo:data];
 }
 
 - (void)tranferDataToVideo:(NSData *)data {
+    //NSLog(@"tran");
+    
     CMSampleBufferRef sampleBuffer;
     [data getBytes:&sampleBuffer length:sizeof(sampleBuffer)];
     
@@ -161,8 +168,15 @@ void myShowAlert(int line, char *functname, id formatstring,...)
                                    orientation:UIImageOrientationRight];
     
     CGImageRelease(newImage);
+
     [self.imageView performSelectorOnMainThread:@selector(setImage:)
                                      withObject:image waitUntilDone:YES];
+    NSError* error = nil;
+	NSData* imageData = UIImageJPEGRepresentation(self.imageView.image, 0.5);
+	[self.session sendData:imageData
+				   toPeers:[NSArray arrayWithObject:self.peerID]
+			  withDataMode:GKSendDataReliable
+					 error:&error];
     
     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 }
@@ -171,7 +185,7 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 #pragma mark - game picker methods
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didSelectConnectionType:(GKPeerPickerConnectionType)type {
-     // from Apple - Game Kit Programmiing Guide: Finding Peers with Peer Picker
+    // from Apple - Game Kit Programmiing Guide: Finding Peers with Peer Picker
     if (type == GKPeerPickerConnectionTypeOnline) {
 		picker.delegate = nil;
 		[picker dismiss];
@@ -229,16 +243,16 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	NSError* error = nil;
 	[session acceptConnectionFromPeer:peerID error:&error];
 	if (error) {
-		showAlert(@"%@", error);
+		NSLog(@"%@", error);
 	}
 }
 
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
-	showAlert(@"%@|%@", peerID, error);
+	NSLog(@"%@|%@", peerID, error);
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error {
-	showAlert(@"%@", error);
+	NSLog(@"%@", error);
 }
 
 #pragma mark - send and receive methods
@@ -283,20 +297,20 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	}
     
 	
-//    if (self.actionSheet) {
-//        // do nothing
-//    } else {
-//        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"cancel"
-//                                         destructiveButtonTitle:nil
-//                                              otherButtonTitles:@"choose", nil];
-//        
-//        [sheet showFromRect:CGRectMake(0, 0, 1165, 573) inView:self.gvaView animated:YES];
-//        self.actionSheet = sheet;
-//        
-//        
-//    }
+    //    if (self.actionSheet) {
+    //        // do nothing
+    //    } else {
+    //        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:nil
+    //                                                       delegate:self
+    //                                              cancelButtonTitle:@"cancel"
+    //                                         destructiveButtonTitle:nil
+    //                                              otherButtonTitles:@"choose", nil];
+    //
+    //        [sheet showFromRect:CGRectMake(0, 0, 1165, 573) inView:self.gvaView animated:YES];
+    //        self.actionSheet = sheet;
+    //
+    //
+    //    }
     
     NSError* error = nil;
 	NSData* data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
@@ -318,6 +332,8 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	}
     
     UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, @selector(imageSaved:didFinishSavingWithError:contextInfo:), nil);
+    
+    self.imageView.image = nil;
 }
 
 -(void)imageSaved:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -335,7 +351,7 @@ void myShowAlert(int line, char *functname, id formatstring,...)
 	if (buttonIndex == 1) {// cancel
 		return;
 	} else if ([choice isEqualToString:@"choose"]) {
-
+        
     }
 }
 
@@ -362,8 +378,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             frame.size.height /= 2;
         }
         imageView.frame = frame;
-//        [self setRandomLocationForView:imageView];
-//        [self.gvaView addSubview:imageView];
+        //        [self setRandomLocationForView:imageView];
+        //        [self.gvaView addSubview:imageView];
         self.imageView.image = image;
     }
     [self dismissImagePicker];
@@ -430,7 +446,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             self.readyToSendImage = NO;
         }
         
-        self.imageView.hidden = !self.readyToSendImage;
         self.sendImageButton.hidden = !self.readyToSendImage;
         self.saveImageButton.hidden = !self.readyToSendImage;
         
@@ -476,7 +491,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         
         UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(585, 175, 400, 200)];
         [self setScanningLabel:tempLabel];
-
+        
         [self.scanningLabel setBackgroundColor:[UIColor clearColor]];
         [self.scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 18.0]];
         [self.scanningLabel setTextColor:[UIColor redColor]];
@@ -498,6 +513,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         self.overlayImageView.hidden = YES;
         self.overlayButton.hidden = YES;
     }else if ([sender.currentTitle isEqualToString:@"F5"]) {
+        
         NSArray *devices = [AVCaptureDevice devices];
         AVCaptureDevice *frontCamera;
         AVCaptureDevice *backCamera;
@@ -517,11 +533,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                 }
             }
         }
-    
+        
         NSError *error = nil;
         
         AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
-
+        
         self.videoOutput.alwaysDiscardsLateVideoFrames = NO;
         
         self.videoOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
@@ -546,8 +562,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             [self.captureSession startRunning];
         }
         
-    
-    
+        
+        
+        
+        
     }else if ([sender.currentTitle isEqualToString:@"F6"]) {
     }
 }
@@ -606,15 +624,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.textField.hidden = YES;
     self.sendTextButton.hidden = YES;
     
-    
     self.sendImageButton.hidden = YES;
     self.saveImageButton.hidden = YES;
-    
-    if (self.imageView.image == nil) {
-        self.imageView.hidden = YES;
-    } else {
-        self.imageView.hidden = NO;
-    }
 }
 
 #pragma mark - hide navigation bar
@@ -623,12 +634,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	[super viewWillAppear:animated];
     
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    if (self.imageView.image == nil) {
-        self.imageView.hidden = YES;
-    } else {
-        self.imageView.hidden = NO;
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
