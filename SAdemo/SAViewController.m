@@ -165,20 +165,21 @@ void myShowAlert(int line, char *functname, id formatstring,...)
     
     UIImage *image = [UIImage imageWithCGImage:newImage
                                          scale:1.0
-                                   orientation:UIImageOrientationRight];
+                                   orientation:UIImageOrientationUp];
     
     CGImageRelease(newImage);
 
     [self.imageView performSelectorOnMainThread:@selector(setImage:)
                                      withObject:image waitUntilDone:YES];
+    
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
     NSError* error = nil;
 	NSData* imageData = UIImageJPEGRepresentation(self.imageView.image, 0.5);
 	[self.session sendData:imageData
 				   toPeers:[NSArray arrayWithObject:self.peerID]
 			  withDataMode:GKSendDataReliable
 					 error:&error];
-    
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
 }
 
 
@@ -655,6 +656,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     theAnimation.duration = 0.5f;
     [self.compass.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
     self.compass.transform = CGAffineTransformMakeRotation(newRad);
-	NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
+	//NSLog(@"%f (%f) => %f (%f)", manager.heading.trueHeading, oldRad, newHeading.trueHeading, newRad);
 }
 @end
