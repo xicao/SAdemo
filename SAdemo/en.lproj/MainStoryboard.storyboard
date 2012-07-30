@@ -703,7 +703,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="26F-bk-U7l">
-                                        <rect key="frame" x="525" y="334" width="247" height="200"/>
+                                        <rect key="frame" x="438" y="174" width="322" height="290"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cb5-BT-wsA">
@@ -1413,7 +1413,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="pKh-5T-ZfA">
-                                        <rect key="frame" x="527" y="338" width="247" height="200"/>
+                                        <rect key="frame" x="438" y="168" width="322" height="269"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9TT-HM-AqQ">

@@ -546,7 +546,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         
         AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
         
-        self.videoOutput.alwaysDiscardsLateVideoFrames = YES;
+        self.videoOutput.alwaysDiscardsLateVideoFrames = NO;
         
         self.videoOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
         
