@@ -286,7 +286,9 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
             } else if ([text isEqualToString:@"iWantToStopVideo"]) {
                 self.imageView.image = nil;
             } else {
-                self.scanningLabel.text = text;
+                self.scanningLabel.text = [NSString stringWithFormat:@"Device name: %@\n", self.mode.text];
+                
+                self.scanningLabel.text = [self.scanningLabel.text stringByAppendingString:text];
             }
             
             //[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
@@ -731,10 +733,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     if ([self.mode.text isEqualToString:@"Controller"]) {
         if (self.startOverlay) {
+            
+            
             [self.scanningLabel setText:[NSString stringWithFormat:@"OldLocation %d %d =>\nNewLocation %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
             
             if (self.session != nil) {
-                //NSLog(@"here");
+                
                 NSError* error = nil;
                 [self.session sendData:[self.scanningLabel.text dataUsingEncoding:NSUTF8StringEncoding]
                                toPeers:[NSArray arrayWithObject:self.peerID]
