@@ -26,6 +26,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextView *overlayTextView;
+
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *sendTextButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendImageButton;

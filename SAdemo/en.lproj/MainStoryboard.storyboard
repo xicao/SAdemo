@@ -681,20 +681,20 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="1B1-PJ-dJy">
-                                        <rect key="frame" x="253" y="542" width="208" height="31"/>
+                                        <rect key="frame" x="253" y="542" width="105" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="XyK-Ap-jPB">
-                                        <rect key="frame" x="253" y="472" width="257" height="62"/>
+                                        <rect key="frame" x="253" y="313" width="159" height="221"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="htc-JT-yoZ">
-                                        <rect key="frame" x="464" y="542" width="46" height="31"/>
+                                        <rect key="frame" x="366" y="542" width="46" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <state key="normal" title="SEND">
@@ -709,11 +709,11 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="26F-bk-U7l">
-                                        <rect key="frame" x="438" y="174" width="322" height="290"/>
+                                        <rect key="frame" x="438" y="173" width="322" height="361"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cb5-BT-wsA">
-                                        <rect key="frame" x="525" y="542" width="120" height="31"/>
+                                        <rect key="frame" x="438" y="542" width="120" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <state key="normal" title="SEND IMAGE">
@@ -728,7 +728,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P1a-VA-5cM">
-                                        <rect key="frame" x="652" y="542" width="120" height="31"/>
+                                        <rect key="frame" x="640" y="542" width="120" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <state key="normal" title="SAVE IMAGE">
@@ -742,6 +742,12 @@
                                             <action selector="saveImage:" destination="B9O-hE-1ap" eventType="touchUpInside" id="0VR-y3-W2D"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="MmC-rD-C5U">
+                                        <rect key="frame" x="438" y="173" width="321" height="361"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -758,6 +764,7 @@
                         <outlet property="indicator" destination="1Yx-KD-uIN" id="bJy-Pc-FtG"/>
                         <outlet property="informationBar" destination="dxV-uP-qJt" id="aFJ-xb-fzD"/>
                         <outlet property="mode" destination="q3A-1h-DVd" id="eK4-6T-vbD"/>
+                        <outlet property="overlayTextView" destination="MmC-rD-C5U" id="Uix-cq-CBZ"/>
                         <outlet property="progressView" destination="5GT-1U-mUZ" id="4mu-UO-etP"/>
                         <outlet property="saveImageButton" destination="P1a-VA-5cM" id="6aE-cR-tps"/>
                         <outlet property="sendImageButton" destination="cb5-BT-wsA" id="dqE-Un-uEO"/>
@@ -1388,20 +1395,20 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="dbY-yN-0fG">
-                                        <rect key="frame" x="255" y="546" width="208" height="31"/>
+                                        <rect key="frame" x="255" y="546" width="105" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="hEH-aH-qSP">
-                                        <rect key="frame" x="255" y="476" width="257" height="62"/>
+                                        <rect key="frame" x="255" y="313" width="157" height="225"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yhe-Ch-kP5">
-                                        <rect key="frame" x="466" y="546" width="46" height="31"/>
+                                        <rect key="frame" x="366" y="546" width="46" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <state key="normal" title="SEND">
@@ -1416,11 +1423,11 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="pKh-5T-ZfA">
-                                        <rect key="frame" x="438" y="168" width="322" height="269"/>
+                                        <rect key="frame" x="438" y="172" width="322" height="366"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9TT-HM-AqQ">
-                                        <rect key="frame" x="527" y="546" width="120" height="31"/>
+                                        <rect key="frame" x="438" y="546" width="120" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <state key="normal" title="SEND IMAGE">
@@ -1435,7 +1442,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Bf5-R3-aSp">
-                                        <rect key="frame" x="654" y="546" width="120" height="31"/>
+                                        <rect key="frame" x="640" y="546" width="120" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <state key="normal" title="SAVE IMAGE">
@@ -1449,6 +1456,12 @@
                                             <action selector="saveImage:" destination="ONV-Vj-1OF" eventType="touchUpInside" id="cOo-1d-dlK"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="vuW-tl-1uR">
+                                        <rect key="frame" x="439" y="173" width="321" height="365"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1464,6 +1477,7 @@
                         <outlet property="indicator" destination="8d6-Uk-Ulx" id="HKK-5p-M18"/>
                         <outlet property="informationBar" destination="Z7E-GW-o8w" id="9hl-7k-Jgu"/>
                         <outlet property="mode" destination="fa2-z2-xqs" id="qiK-jw-pec"/>
+                        <outlet property="overlayTextView" destination="vuW-tl-1uR" id="5Ug-DT-eSd"/>
                         <outlet property="progressView" destination="hJR-Qg-8hJ" id="X95-re-8jQ"/>
                         <outlet property="saveImageButton" destination="Bf5-R3-aSp" id="6rI-8G-WCD"/>
                         <outlet property="sendImageButton" destination="9TT-HM-AqQ" id="tW1-45-fdz"/>
@@ -1518,6 +1532,7 @@
                 <relationship kind="outlet" name="indicator" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="informationBar" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mode" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="overlayTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="saveImageButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="sendImageButton" candidateClass="UIButton"/>

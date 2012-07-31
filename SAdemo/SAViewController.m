@@ -30,6 +30,7 @@
 @synthesize mode = _mode;
 @synthesize textField = _textField;
 @synthesize textView = _textView;
+@synthesize overlayTextView = _overlayTextView;
 @synthesize imageView = _imageView;
 @synthesize sendTextButton = _sendTextButton;
 @synthesize sendImageButton = _sendImageButton;
@@ -277,7 +278,7 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
 	if ([data length] < 1024) {// receive text
         NSLog(@"text received");
         if ([self.mode.text isEqualToString:@"Crew-point"]) {
-
+            
             NSString* text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             
             if ([text isEqualToString:@"iWantToStopOverlay"]) {
@@ -290,11 +291,11 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
             
             //[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
         }
-//        NSLog(@"text received");
-//		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
-//		self.textView.text = text;
-//        
-//		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
+        //        NSLog(@"text received");
+        //		NSString* text = [self.textView.text stringByAppendingFormat:@"%@\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+        //		self.textView.text = text;
+        //
+        //		[self.textView scrollRangeToVisible:NSMakeRange([text length] -1, 1)];
 	} else {// receive image
 		NSLog(@"image received");
 		//self.imageView.image = [UIImage imageWithData:data];
@@ -659,6 +660,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [self setImageView:nil];
     [self setSendImageButton:nil];
     [self setSaveImageButton:nil];
+    [self setOverlayTextView:nil];
     [super viewDidUnload];
 }
 
@@ -683,12 +685,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.sendImageButton.hidden = YES;
     self.saveImageButton.hidden = YES;
     
-    self.scanningLabel.numberOfLines = 2;
+    self.scanningLabel.numberOfLines = 6;
     [self.scanningLabel setBackgroundColor:[UIColor clearColor]];
     [self.scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 15.0]];
     [self.scanningLabel setTextColor:[UIColor redColor]];
     //[self.scanningLabel setHidden:YES];
     [self.gvaView addSubview:self.scanningLabel];
+    
+    self.overlayTextView.opaque = NO;
 }
 
 #pragma mark - hide navigation bar
@@ -727,7 +731,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     if ([self.mode.text isEqualToString:@"Controller"]) {
         if (self.startOverlay) {
-            [self.scanningLabel setText:[NSString stringWithFormat:@"OldLocation %d %d =>\nNewLocation %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
             
             if (self.session != nil) {
                 //NSLog(@"here");
@@ -736,7 +739,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                toPeers:[NSArray arrayWithObject:self.peerID]
                           withDataMode:GKSendDataReliable
                                  error:&error];
+                
+                [self.scanningLabel setText:[NSString stringWithFormat:@"Sending to %@ ...", [self.session displayNameForPeer:self.peerID]]];
+                
             }
+            
+            [self.scanningLabel setText:[self.scanningLabel.text stringByAppendingFormat:@"OldLocation %d %d =>\nNewLocation %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
         }
     }
 }
