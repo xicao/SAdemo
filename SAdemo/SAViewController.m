@@ -731,6 +731,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     if ([self.mode.text isEqualToString:@"Controller"]) {
         if (self.startOverlay) {
+            [self.scanningLabel setText:[NSString stringWithFormat:@"OldLocation %d %d =>\nNewLocation %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
             
             if (self.session != nil) {
                 //NSLog(@"here");
@@ -739,15 +740,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                toPeers:[NSArray arrayWithObject:self.peerID]
                           withDataMode:GKSendDataReliable
                                  error:&error];
-                
-                [self.scanningLabel setText:[NSString stringWithFormat:@"Sending to %@ ...", [self.session displayNameForPeer:self.peerID]]];
-                
             }
-            
-            [self.scanningLabel setText:[self.scanningLabel.text stringByAppendingFormat:@"OldLocation %d %d =>\nNewLocation %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
         }
     }
 }
+
+
 
 
 @end
