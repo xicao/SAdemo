@@ -32,20 +32,20 @@
 #define LABEL_X             177
 #define LABEL_GAP           87
 
+#define S CGPointMake(WHITE_ZONE_ORIGIN_X, WHITE_ZONE_ORIGIN_Y,WHITE_ZONE_WIDTH,WHITE_ZONE_HEIGHT)
+
+
 @synthesize functionalAreaLabel = _funtionalAreaLabel;
 
-- (void)setup
-{
+- (void)setup {
     self.contentMode = UIViewContentModeRedraw;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [self setup];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self setup];
@@ -53,8 +53,7 @@
     return self;
 }
 
-- (void)drawTriangleInContext:(CGContextRef)context
-{
+- (void)drawTriangleInContext:(CGContextRef)context {
     UIGraphicsPushContext(context);
     CGContextBeginPath(context);
     
@@ -70,8 +69,7 @@
     UIGraphicsPopContext();
 }
 
-- (void)drawRectAtPoint:(CGPoint)p withWidth:(CGFloat)width andHeight:(CGFloat)height inContext:(CGContextRef)context 
-{
+- (void)drawRectAtPoint:(CGPoint)p withWidth:(CGFloat)width andHeight:(CGFloat)height inContext:(CGContextRef)context  {
     UIGraphicsPushContext(context);
     
     CGContextBeginPath(context);
@@ -81,8 +79,7 @@
     UIGraphicsPopContext();
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetLineWidth(context, 1.0);
@@ -125,8 +122,7 @@
     [self drawTriangleInContext:context];
 }
 
-- (void)functionalAreaLabelSelected:(NSString *)label
-{
+- (void)functionalAreaLabelSelected:(NSString *)label {
     NSArray *title = [NSArray arrayWithObjects:@"SA",@"WPN",@"DEF",@"SYS",@"DRV",@"STR",@"COM",@"BMS",nil];
     
     if ([title indexOfObject:label] == NSNotFound) {

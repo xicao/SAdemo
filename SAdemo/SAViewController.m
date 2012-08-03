@@ -286,7 +286,7 @@ void myShowAlert(int line, char *functname, id formatstring,...) {
             } else if ([text isEqualToString:@"iWantToStopVideo"]) {
                 self.imageView.image = nil;
             } else {
-                self.scanningLabel.text = [NSString stringWithFormat:@"Device name: %@\n", self.mode.text];
+                self.scanningLabel.text = [NSString stringWithFormat:@"Receive video streaming from: %@\n", @"Controller"];
                 
                 self.scanningLabel.text = [self.scanningLabel.text stringByAppendingString:text];
             }
@@ -734,8 +734,27 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     if ([self.mode.text isEqualToString:@"Controller"]) {
         if (self.startOverlay) {
             
+            [self.scanningLabel setText:[NSString stringWithFormat:@"OldLocation: %d %d =>\nNewLocation: %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
             
-            [self.scanningLabel setText:[NSString stringWithFormat:@"OldLocation %d %d =>\nNewLocation %d %d", (int)oldLocation.coordinate.latitude, (int)oldLocation.coordinate.longitude, (int)newLocation.coordinate.latitude, (int)newLocation.coordinate.longitude]];
+            NSDate *now = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateStyle:NSDateFormatterShortStyle];
+            [formatter setTimeStyle:NSDateFormatterShortStyle];
+            [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Australia/Sydney"]];
+            //NSLog(@"%@",[formatter stringFromDate:now]); //--> 9/9/11 11:54 PM
+
+            self.scanningLabel.text = [self.scanningLabel.text stringByAppendingFormat:@"\n\n%@",[formatter stringFromDate:now]];
+            
+//            float battLvl = [[UIDevice currentDevice] batteryLevel]; // range is from 0.0 to 1.0
+//            UIDeviceBatteryState battState = [[UIDevice currentDevice] batteryLevel];
+//
+//            // enable monitoring and add observers with selector
+//            UIDevice *device = [UIDevice currentDevice];
+//            device.batteryMonitoringEnabled = YES;
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryChanged:) name:@"UIDeviceBatteryLevelDidChangeNotification" object:device];
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryChanged:) name:@"UIDeviceBatteryStateDidChangeNotification" object:device];
+
+            
             
             if (self.session != nil) {
                 

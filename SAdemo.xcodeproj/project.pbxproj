@@ -11,6 +11,7 @@
 		1E2CB0B515C6F39200C3F5E3 /* SBTableAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CB0B415C6F39200C3F5E3 /* SBTableAlert.m */; };
 		1E2CB0BA15C6F3EA00C3F5E3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E2CB0B915C6F3EA00C3F5E3 /* LICENSE */; };
 		1E45C96015B76E3E00F9F7E2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E45C95F15B76E3E00F9F7E2 /* MobileCoreServices.framework */; };
+		1E522AAD15C9582700714D0C /* DesignDetails.md in Resources */ = {isa = PBXBuildFile; fileRef = 1E522AAC15C9582700714D0C /* DesignDetails.md */; };
 		1E5EF90C159B8D2000AE3F6A /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EF90B159B8D2000AE3F6A /* compass.png */; };
 		1E5EF923159BA59800AE3F6A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF922159BA59800AE3F6A /* CoreLocation.framework */; };
 		1E5EF925159BA5AA00AE3F6A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */; };
@@ -43,6 +44,7 @@
 		1E2CB0B415C6F39200C3F5E3 /* SBTableAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTableAlert.m; sourceTree = "<group>"; };
 		1E2CB0B915C6F3EA00C3F5E3 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1E45C95F15B76E3E00F9F7E2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		1E522AAC15C9582700714D0C /* DesignDetails.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DesignDetails.md; sourceTree = "<group>"; };
 		1E5EF90B159B8D2000AE3F6A /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		1E5EF922159BA59800AE3F6A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1E5EF924159BA5AA00AE3F6A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -176,6 +178,7 @@
 				1E64DA57159B462F00B31095 /* InfoPlist.strings */,
 				1E64DA5A159B462F00B31095 /* main.m */,
 				1E64DA5C159B462F00B31095 /* SAdemo-Prefix.pch */,
+				1E522AAC15C9582700714D0C /* DesignDetails.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				1ED0319815C04D2E0096B0F4 /* overlaygraphic.png in Resources */,
 				1ED0319915C04D2E0096B0F4 /* scanbutton.png in Resources */,
 				1E2CB0BA15C6F3EA00C3F5E3 /* LICENSE in Resources */,
+				1E522AAD15C9582700714D0C /* DesignDetails.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
