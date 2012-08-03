@@ -662,7 +662,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="compass 2.png" id="JWk-mq-lkR">
-                                        <rect key="frame" x="241" y="161" width="164" height="144"/>
+                                        <rect key="frame" x="250" y="161" width="164" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dxV-uP-qJt">
@@ -1383,7 +1383,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="compass 2.png" id="ZUM-xX-coz">
-                                        <rect key="frame" x="241" y="168" width="164" height="144"/>
+                                        <rect key="frame" x="251" y="167" width="164" height="144"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="8d6-Uk-Ulx">
